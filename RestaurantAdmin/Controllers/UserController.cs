@@ -134,7 +134,7 @@ namespace RestaurantAdmin.Controllers
             ModelState.AddModelError("", result.Message);
             return View(request);
         }
-
+          
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
