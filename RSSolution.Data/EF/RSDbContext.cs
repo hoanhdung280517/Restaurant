@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using RSSolution.Data.Configurations;
+using RSSolution.Data.Extensions;
 
 namespace RSSolution.Data.EF
 {
@@ -44,7 +45,7 @@ namespace RSSolution.Data.EF
             modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims");
             modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
 
-
+            modelBuilder.Seed();
 
             // base.OnModelCreating(modelBuilder);
         }
