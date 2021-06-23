@@ -3,16 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantSystem", "RestaurantSystem\RestaurantSystem.csproj", "{734341E2-E3DF-4E5C-BA18-D4CD26DE5C58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantSystem", "RestaurantSystem\RestaurantSystem.csproj", "{734341E2-E3DF-4E5C-BA18-D4CD26DE5C58}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BB689A72-A38B-432B-AE02-9491D5DF2723}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSolution.Data", "RSSolution.Data\RSSolution.Data.csproj", "{FDEF53ED-63D3-4AB5-9C6F-483A1DCBB99C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSSolution.Data", "RSSolution.Data\RSSolution.Data.csproj", "{FDEF53ED-63D3-4AB5-9C6F-483A1DCBB99C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSolution.Application", "RSSolution.Application\RSSolution.Application.csproj", "{07E2EAFC-1A73-46D6-B8EB-71C86EB546F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSSolution.Application", "RSSolution.Application\RSSolution.Application.csproj", "{07E2EAFC-1A73-46D6-B8EB-71C86EB546F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domian", "Domian", "{509A65AD-1AEB-4175-AEAD-9CE8B48801E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{EA3CCA4F-F7F6-4C24-9FE6-1AF1A7AF5A7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSolution.Utilities", "RSSolution.Utilities\RSSolution.Utilities.csproj", "{1A6ABADD-436C-4436-9F34-3514A7106D5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSolution.ViewModels", "RSSolution.ViewModels\RSSolution.ViewModels.csproj", "{1B56E755-8DF9-4EE6-AC32-82B2136EE4BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantAPI", "RestaurantAPI\RestaurantAPI.csproj", "{FC2AD283-3CEF-4558-8609-B659B7C5C542}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,9 +42,27 @@ Global
 		{07E2EAFC-1A73-46D6-B8EB-71C86EB546F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07E2EAFC-1A73-46D6-B8EB-71C86EB546F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07E2EAFC-1A73-46D6-B8EB-71C86EB546F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A6ABADD-436C-4436-9F34-3514A7106D5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A6ABADD-436C-4436-9F34-3514A7106D5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A6ABADD-436C-4436-9F34-3514A7106D5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A6ABADD-436C-4436-9F34-3514A7106D5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B56E755-8DF9-4EE6-AC32-82B2136EE4BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B56E755-8DF9-4EE6-AC32-82B2136EE4BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B56E755-8DF9-4EE6-AC32-82B2136EE4BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B56E755-8DF9-4EE6-AC32-82B2136EE4BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC2AD283-3CEF-4558-8609-B659B7C5C542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC2AD283-3CEF-4558-8609-B659B7C5C542}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC2AD283-3CEF-4558-8609-B659B7C5C542}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC2AD283-3CEF-4558-8609-B659B7C5C542}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FDEF53ED-63D3-4AB5-9C6F-483A1DCBB99C} = {509A65AD-1AEB-4175-AEAD-9CE8B48801E1}
+		{07E2EAFC-1A73-46D6-B8EB-71C86EB546F7} = {509A65AD-1AEB-4175-AEAD-9CE8B48801E1}
+		{1A6ABADD-436C-4436-9F34-3514A7106D5B} = {EA3CCA4F-F7F6-4C24-9FE6-1AF1A7AF5A7F}
+		{1B56E755-8DF9-4EE6-AC32-82B2136EE4BC} = {EA3CCA4F-F7F6-4C24-9FE6-1AF1A7AF5A7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {346A37F0-5681-476B-9DFD-63E901F3295D}
