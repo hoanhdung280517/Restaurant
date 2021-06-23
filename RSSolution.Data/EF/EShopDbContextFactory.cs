@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace eShopSolution.Data.EF
+namespace RSSolution.Data.EF
 {
-    public class EShopDbContextFactory : IDesignTimeDbContextFactory<EShopDbContext>
+    public class RSDbContextFactory : IDesignTimeDbContextFactory<RSDbContext>
     {
-        public EShopDbContext CreateDbContext(string[] args)
+        public RSDbContext CreateDbContext(string[] args)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -19,10 +19,10 @@ namespace eShopSolution.Data.EF
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            var optionsBuilder = new DbContextOptionsBuilder<EShopDbContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<RSDbContext>();
             optionsBuilder.UseSqlServer(connectionString);
 
-            return new EShopDbContext(optionsBuilder.Options);
+            return new RSDbContext(optionsBuilder.Options);
         }
     }
 }
