@@ -59,7 +59,6 @@ namespace RSSolution.Application.Catalog.MealCategories
                     translations.Add(new MealCategoryTranslation()
                     {
                         Name = request.Name,
-             
                         SeoDescription = request.SeoDescription,
                         SeoAlias = request.SeoAlias,
                         SeoTitle = request.SeoTitle,

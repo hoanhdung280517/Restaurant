@@ -1,0 +1,76 @@
+﻿@using RSSolution.ViewModels.System.Users
+@model LoginRequest
+@{ Layout = null; }
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Google fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="~/login/css/style.css" type="text/css" media="all" />
+</head>
+@using (Html.BeginForm("Index", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+@Html.AntiForgeryToken()
+                <body>
+                    <div class="signinform">
+                        <h1>Login</h1>
+                        <!-- container -->
+                        <div class="containers">
+                            <!-- main content -->
+                            <div class="w3l-form-info">
+                                <div class="w3_info">
+                                    <form id="account" method="post">
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <label asp-for="UserName"></label>
+                                            <input asp-for="UserName" class="form-control" />
+                                            <span asp-validation-for="UserName" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Password"></label>
+                                            <input asp-for="Password" class="form-control" />
+                                            <span asp-validation-for="Password" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-row bottom">
+                                            <div class="form-check">
+                                                <div class="form-check">
+                                                    <input type="checkbox" id="remenber" name="remenber" value="remenber" asp-for="RememberMe">
+                                                    <label for="remenber" asp-for="RememberMe"> @Html.DisplayNameFor(m => m.RememberMe)</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Log in</button>
+                                    </form>
+                                    <p class="continue"><span>or Login with</span></p>
+                                    <div class="social-login">
+                                        <a href="#facebook">
+                                            <div class="facebook">
+                                                <span class="fab fa-facebook-f" aria-hidden="true"></span>
+                                            </div>
+                                        </a>
+                                        <a href="#twitter">
+                                            <div class="twitter">
+                                                <span class="fab fa-twitter" aria-hidden="true"></span>
+                                            </div>
+                                        </a>
+                                        <a href="#google">
+                                            <div class="google">
+                                                <span class="fab fa-google" aria-hidden="true"></span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //main content -->
+                        </div>
+                        <!-- //container -->
+                    </div>
+                    <!-- fontawesome v5-->
+                    <script src="~/login/js/fontawesome.js"></script>
+                </body>}
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
