@@ -6,7 +6,7 @@ namespace RSSolution.Data.Enums
 {
     public enum Status
     {
-        InActive,
-        Active
+        Over,
+        Still
     }
 }
