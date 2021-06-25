@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSSolution.Data.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace RSSolution.ViewModels.Catalog.MealCategories
         public int Id { set; get; }
         public int SortOrder { set; get; }
         public bool IsShowOnHome { set; get; }
+        public Status Status { set; get; }
         public int? ParentId { set; get; }
         public string Name { set; get; }
         public string SeoDescription { set; get; }

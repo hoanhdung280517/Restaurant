@@ -26,9 +26,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantAPI", "Restaurant
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{944BD2D7-67EB-41AC-AD87-6F29D755C3F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantAdmin", "RestaurantAdmin\RestaurantAdmin.csproj", "{7D5F729C-97B4-4B77-A74F-F0B685610F77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantAdmin", "RestaurantAdmin\RestaurantAdmin.csproj", "{7D5F729C-97B4-4B77-A74F-F0B685610F77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSolution.APIHelppers", "RSSolution.APIHelppers\RSSolution.APIHelppers.csproj", "{6CFCA2E5-8084-4207-A60C-D72A9FE20E11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSSolution.APIHelppers", "RSSolution.APIHelppers\RSSolution.APIHelppers.csproj", "{6CFCA2E5-8084-4207-A60C-D72A9FE20E11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

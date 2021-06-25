@@ -1,0 +1,33 @@
+﻿@model RSSolution.ViewModels.Catalog.Meals.CategoryAssignRequest
+
+@{ ViewData["Title"] = "CategoryAssign";
+    Layout = "_Layout"; }
+<div id="page-wrapper">
+    <div class="main-page">
+        <center><h1 class="mt-4">CategoryAssign</h1></center><hr />
+        <div class="card mb-4">
+            <div class="card-body">
+                <form asp-action="CategoryAssign">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    @for (var i = 0; i < Model.MealCategories.Count; i++)
+                    {
+        <div class="form-group">
+            <label>
+                @Model.MealCategories[i].Name
+                <input type="checkbox" asp-for="MealCategories[i].Selected" />
+                <input type="hidden" asp-for="MealCategories[i].Id" />
+                <input type="hidden" asp-for="MealCategories[i].Name" />
+            </label>
+        </div>}
+                <center>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        <a class="btn btn-success" asp-action="Index" asp-controller="Meal">Back to list</a>
+                    </div>
+                </center>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

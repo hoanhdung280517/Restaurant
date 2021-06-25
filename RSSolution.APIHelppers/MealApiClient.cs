@@ -58,19 +58,18 @@ namespace RSSolution.APIHelpers
             }
 
             requestContent.Add(new StringContent(request.Price.ToString()), "price");
-            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Name) ? "" : request.Name.ToString()), "name");
-            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Description) ? "" : request.Description.ToString()), "description");
+            requestContent.Add(new StringContent(request.Name.ToString()), "name");
+            requestContent.Add(new StringContent(request.Description.ToString()), "description");
 
-            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Details) ? "" : request.Details.ToString()), "details");
-            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.SeoDescription) ? "" : request.SeoDescription.ToString()), "seoDescription");
-            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.SeoTitle) ? "" : request.SeoTitle.ToString()), "seoTitle");
-            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.SeoAlias) ? "" : request.SeoAlias.ToString()), "seoAlias");
+            requestContent.Add(new StringContent(request.Details.ToString()), "details");
+            requestContent.Add(new StringContent(request.SeoDescription.ToString()), "seoDescription");
+            requestContent.Add(new StringContent(request.SeoTitle.ToString()), "seoTitle");
+            requestContent.Add(new StringContent(request.SeoAlias.ToString()), "seoAlias");
             requestContent.Add(new StringContent(languageId), "languageId");
 
             var response = await client.PostAsync($"/api/meals/", requestContent);
             return response.IsSuccessStatusCode;
         }
-
         public async Task<bool> UpdateMeal(MealUpdateRequest request)
         {
             var sessions = _httpContextAccessor
@@ -133,7 +132,7 @@ namespace RSSolution.APIHelpers
             var json = JsonConvert.SerializeObject(request);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync($"/api/meals/{id}/categories", httpContent);
+            var response = await client.PutAsync($"/api/meals/{id}/mealCategories", httpContent);
             var result = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);

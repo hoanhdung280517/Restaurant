@@ -28,18 +28,20 @@ namespace RestaurantAdmin.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string languageId)
         {
+            languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
+
             var mealCategories = await _mealCategoryApiClient.GetAll(languageId);
             return View(mealCategories.ToList());
         }
         [HttpGet]
-        public IActionResult CreateMealCategory()
+        public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> CreateMealCategory([FromForm] MealCategoryCreateRequest request)
+        public async Task<IActionResult> Create([FromForm] MealCategoryCreateRequest request)
         {
             if (!ModelState.IsValid)
                 return View(request);
@@ -56,7 +58,7 @@ namespace RestaurantAdmin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EditCategory(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
 
@@ -76,7 +78,7 @@ namespace RestaurantAdmin.Controllers
 
         [HttpPost]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> EditCategory([FromForm] MealCategoryUpdateRequest request)
+        public async Task<IActionResult> Edit([FromForm] MealCategoryUpdateRequest request)
         {
             if (!ModelState.IsValid)
                 return View(request);
@@ -92,7 +94,7 @@ namespace RestaurantAdmin.Controllers
             return View(request);
         }
         [HttpGet]
-        public IActionResult DeleteCategory(int id)
+        public IActionResult Delete(int id)
         {
             return View(new MealCategoryDeleteRequest()
             {
@@ -101,7 +103,7 @@ namespace RestaurantAdmin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteCategory(MealCategoryDeleteRequest request)
+        public async Task<IActionResult> Delete(MealCategoryDeleteRequest request)
         {
             if (!ModelState.IsValid)
                 return View();

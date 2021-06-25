@@ -97,8 +97,8 @@ namespace RSSolution.Data.Extensions
             modelBuilder.Entity<AppUser>().HasData(new AppUser
             {
                 Id = adminId,
-                UserName = "admin",
-                NormalizedUserName = "admin",
+                UserName = "Admin",
+                NormalizedUserName = "Admin",
                 Email = "hoanhdung280517@gmail.com",
                 NormalizedEmail = "hoanhdung280517@gmail.com",
                 EmailConfirmed = true,
@@ -106,7 +106,7 @@ namespace RSSolution.Data.Extensions
                 SecurityStamp = string.Empty,
                 FirstName = "Dung",
                 LastName = "Ho",
-                Dob = new DateTime(2020, 01, 31),
+                Dob = new DateTime(2000, 09, 23),
                 DistrictId = 1,
                 ProvinceId = 1
 

@@ -4,7 +4,6 @@ using RSSolution.APIHelpers;
 using RSSolution.Utilities.Constants;
 using RSSolution.ViewModels.Catalog.Meals;
 using RSSolution.ViewModels.Common;
-using RSSolution.ViewModels.System.Meals;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -43,8 +42,8 @@ namespace RestaurantAdmin.Controllers
             var data = await _mealApiClient.GetPagings(request);
             ViewBag.Keyword = keyword;
 
-            var categories = await _mealCategoryApiClient.GetAll(languageId);
-            ViewBag.Categories = categories.Select(x => new SelectListItem()
+            var mealCategories = await _mealCategoryApiClient.GetAll(languageId);
+            ViewBag.MealCategories = mealCategories.Select(x => new SelectListItem()
             {
                 Text = x.Name,
                 Value = x.Id.ToString(),

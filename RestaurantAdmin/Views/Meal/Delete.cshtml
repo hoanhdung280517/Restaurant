@@ -1,0 +1,36 @@
+﻿@model RSSolution.ViewModels.Catalog.Meals.MealDeleteRequest
+
+@{ ViewData["Title"] = "Delte";
+    Layout = "_Layout"; }
+
+<div id="page-wrapper">
+    <center><h1 class="mt-4">Delete</h1></center><hr />
+    <div class="main-page">
+        <div class="card mb-4">
+            <table class="table table-bordered table-striped no-margin grd_tble">
+                <thead>
+                    <tr>
+                        <th>
+                           <center>@Html.DisplayNameFor(model => model.Id)</center>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                           <center> @Html.DisplayFor(model => model.Id)</center>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <center>
+                <form asp-action="Delete">
+                    <input asp-for="Id" type="hidden" />
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                    <a class="btn btn-success" asp-action="Index" asp-controller="Meal">Back to list</a>
+                </form>
+            </center>
+        </div>
+    </div>
+</div>
+

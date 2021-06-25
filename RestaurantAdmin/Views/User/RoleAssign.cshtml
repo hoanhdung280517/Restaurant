@@ -1,0 +1,34 @@
+﻿@model RSSolution.ViewModels.System.Users.RoleAssignRequest
+@{
+    ViewData["Title"] = "Add Role";
+    Layout = "_Layout";
+}
+<div id="page-wrapper">
+    <div class="main-page">
+        <center><h3 class="title1">Add Role</h3></center>
+        <div class="grid-bottom widget-shadow">
+            <form asp-action="RoleAssign">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                @for (var i = 0; i < Model.Roles.Count; i++)
+                {
+                <div class="form-group">
+                    <label>
+                        @Model.Roles[i].Name
+                        <input type="checkbox" asp-for="Roles[i].Selected" />
+                        <input type="hidden" asp-for="Roles[i].Id" />
+                        <input type="hidden" asp-for="Roles[i].Name" />
+                    </label>
+                </div>           
+                 }
+                <hr />
+                <center>
+                    <div class="edu_button">
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-primary btn-lg hvr-underline-from-left">Back to List</a>
+                    </div>
+                </center>
+            </form>           
+        </div>
+    </div>
+</div>

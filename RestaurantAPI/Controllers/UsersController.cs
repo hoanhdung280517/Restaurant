@@ -35,7 +35,7 @@ namespace RestaurantAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody]RegisterRequest request)
         {

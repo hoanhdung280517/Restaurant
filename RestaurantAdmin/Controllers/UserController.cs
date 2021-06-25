@@ -62,17 +62,27 @@ namespace RestaurantAdmin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(int? districtId, int? provinceId)
         {
             var district = await _pDApiClient.GetAllDistrict();
+            ViewBag.District = district.Select(x => new SelectListItem()
+            {
+                Text = x.Name,
+                Value = x.Id.ToString(),
+                Selected = districtId.HasValue && districtId.Value == x.Id
+            });
             var province = await _pDApiClient.GetAllProvince();
-            ViewBag.DistrictId = district;
-            ViewBag.ProvinceId = province;
+            ViewBag.Province = province.Select(x => new SelectListItem()
+            {
+                Text = x.Name,
+                Value = x.Id.ToString(),
+                Selected = provinceId.HasValue && provinceId.Value == x.Id
+            });
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(RegisterRequest request)
+        public async Task<IActionResult> Create(RegisterRequest request )
         {
             if (!ModelState.IsValid)
                 return View();
@@ -83,16 +93,12 @@ namespace RestaurantAdmin.Controllers
                 TempData["result"] = "Add new user successful";
                 return RedirectToAction("Index");
             }
-            var district = await _pDApiClient.GetAllDistrict();
-            var province = await _pDApiClient.GetAllProvince();
-            ViewBag.DistrictId = district;
-            ViewBag.ProvinceId = province;
             ModelState.AddModelError("", result.Message);
             return View(request);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid id, int? districtId, int? provinceId)
         {
             var result = await _userApiClient.GetById(id);
             if (result.IsSuccessed)
@@ -110,9 +116,19 @@ namespace RestaurantAdmin.Controllers
                     DistrictId = user.DistrictId,
                 };
                 var district = await _pDApiClient.GetAllDistrict();
+                ViewBag.District = district.Select(x => new SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString(),
+                    Selected = districtId.HasValue && districtId.Value == x.Id
+                });
                 var province = await _pDApiClient.GetAllProvince();
-                ViewBag.DistrictId = new SelectList(district, "Id", "Name", user.DistrictId);
-                ViewBag.ProvinceId = new SelectList(province, "Id", "Name", user.ProvinceId); ;
+                ViewBag.Province = province.Select(x => new SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString(),
+                    Selected = provinceId.HasValue && provinceId.Value == x.Id
+                });
                 return View(updateRequest);
             }
             return RedirectToAction("Error", "Home");

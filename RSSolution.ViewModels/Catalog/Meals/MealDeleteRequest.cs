@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RSSolution.ViewModels.System.Meals
+namespace RSSolution.ViewModels.Catalog.Meals
 {
     public class MealDeleteRequest
     {

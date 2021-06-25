@@ -52,6 +52,7 @@ namespace RestaurantAdmin
             services.AddTransient<IMealApiClient, MealApiClient>();
             services.AddTransient<IMealCategoryApiClient, MealCategoryApiClient>();
             services.AddTransient<IPDApiClient, PDApiClient>();
+            services.AddTransient<ITableApiClient, TableApiClient>();
 
 
             IMvcBuilder builder = services.AddRazorPages();

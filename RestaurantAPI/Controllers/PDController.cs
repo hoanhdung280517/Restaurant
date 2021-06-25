@@ -17,15 +17,15 @@ namespace RestaurantAPI.Controllers
             _pDService = pDService;
         }
         [HttpGet("district")]
-        public IActionResult GetAllDistrict()
+        public async Task<IActionResult> GetAllDistrict()
         {
-            var district = _pDService.GetAllDistrict();
+            var district = await _pDService.GetAllDistrict();
             return Ok(district);
         }
         [HttpGet("province")]
-        public IActionResult GetAllProvince()
+        public async Task<IActionResult> GetAllProvince()
         {
-            var provinces = _pDService.GetAllProvince();
+            var provinces = await _pDService.GetAllProvince();
             return Ok(provinces);
         }
     }

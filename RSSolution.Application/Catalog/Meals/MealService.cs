@@ -60,40 +60,24 @@ namespace RSSolution.Application.Catalog.Meals
 
         public async Task<int> Create(MealCreateRequest request)
         {
-            var languages = _context.Languages;
-            var translations = new List<MealTranslation>();
-            foreach (var language in languages)
+            var meal = new Meal()
             {
-                if (language.Id == request.LanguageId)
+                Price = request.Price,
+                ViewCount = 0,
+                DateCreated = DateTime.Now,
+                MealTranslations = new List<MealTranslation>()
                 {
-                    translations.Add(new MealTranslation()
+                    new MealTranslation()
                     {
-                        Name = request.Name,
+                        Name =  request.Name,
                         Description = request.Description,
                         Details = request.Details,
                         SeoDescription = request.SeoDescription,
                         SeoAlias = request.SeoAlias,
                         SeoTitle = request.SeoTitle,
                         LanguageId = request.LanguageId
-                    });
+                    }
                 }
-                else
-                {
-                    translations.Add(new MealTranslation()
-                    {
-                        Name = SystemConstants.MealConstants.NA,
-                        Description = SystemConstants.MealConstants.NA,
-                        SeoAlias = SystemConstants.MealConstants.NA,
-                        LanguageId = language.Id
-                    });
-                }
-            }
-            var meal = new Meal()
-            {
-                Price = request.Price,
-                ViewCount = 0,
-                DateCreated = DateTime.Now,
-                MealTranslations = translations
             };
             //Save image
             if (request.ThumbnailImage != null)
@@ -154,6 +138,7 @@ namespace RSSolution.Application.Catalog.Meals
                 query = query.Where(p => p.pic.MealCategoryId == request.MealCategoryId);
             }
 
+
             //3. Paging
             int totalRow = await query.CountAsync();
 
@@ -171,8 +156,7 @@ namespace RSSolution.Application.Catalog.Meals
                     SeoAlias = x.pt.SeoAlias,
                     SeoDescription = x.pt.SeoDescription,
                     SeoTitle = x.pt.SeoTitle,
-                    ViewCount = x.p.ViewCount,
-                    ThumbnailImage = x.pi.ImagePath
+                    ViewCount = x.p.ViewCount
                 }).ToListAsync();
 
             //4. Select and projection
@@ -198,8 +182,6 @@ namespace RSSolution.Application.Catalog.Meals
                                     where pic.MealId == mealId && ct.LanguageId == languageId
                                     select ct.Name).ToListAsync();
 
-            var image = await _context.MealImages.Where(x => x.MealId == mealId && x.IsDefault == true).FirstOrDefaultAsync();
-
             var mealViewModel = new MealVm()
             {
                 Id = meal.Id,
@@ -213,12 +195,10 @@ namespace RSSolution.Application.Catalog.Meals
                 SeoDescription = mealTranslation != null ? mealTranslation.SeoDescription : null,
                 SeoTitle = mealTranslation != null ? mealTranslation.SeoTitle : null,
                 ViewCount = meal.ViewCount,
-                MealCategories = mealCategories,
-                ThumbnailImage = image != null ? image.ImagePath : "no-image.jpg"
+                MealCategories = mealCategories
             };
             return mealViewModel;
         }
-
         public async Task<MealImageViewModel> GetImageById(int imageId)
         {
             var image = await _context.MealImages.FindAsync(imageId);
@@ -270,7 +250,7 @@ namespace RSSolution.Application.Catalog.Meals
             var mealTranslations = await _context.MealTranslations.FirstOrDefaultAsync(x => x.MealId == request.Id
             && x.LanguageId == request.LanguageId);
 
-            if (meal == null || mealTranslations == null) throw new RSException($"Cannot find a product with id: {request.Id}");
+            if (meal == null || mealTranslations == null) throw new RSException($"Cannot find a meal with id: {request.Id}");
 
             mealTranslations.Name = request.Name;
             mealTranslations.SeoAlias = request.SeoAlias;
@@ -316,6 +296,7 @@ namespace RSSolution.Application.Catalog.Meals
             meal.Price = newPrice;
             return await _context.SaveChangesAsync() > 0;
         }
+
         private async Task<string> SaveFile(IFormFile file)
         {
             var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');

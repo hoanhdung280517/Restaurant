@@ -20,7 +20,7 @@ namespace RSSolution.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AppRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
-                values: new object[] { new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"), "492a032a-aeeb-4b1a-9313-aa4f6e551a87", "Administrator role", "admin", "admin" });
+                values: new object[] { new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"), "cfca0ba7-8231-496c-b931-a8e2ff056d93", "Administrator role", "admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AppUserRoles",
@@ -30,7 +30,7 @@ namespace RSSolution.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AppUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DistrictId", "Dob", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProvinceId", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"), 0, "5c766b65-8409-4631-a3d1-b43ae63af1a5", 1, new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "hoanhdung280517@gmail.com", true, "Dung", "Ho", false, null, "hoanhdung280517@gmail.com", "admin", "AQAAAAEAACcQAAAAEIpPOgq5N5ZbnprZb84cOR4qAqZBb235woHtwKob65ul3+29fUjiPUUOP85ncQJYPA==", null, false, 1, "", false, "admin" });
+                values: new object[] { new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"), 0, "f771298c-2a16-481c-8fc3-22fb15392c02", 1, new DateTime(2000, 9, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "hoanhdung280517@gmail.com", true, "Dung", "Ho", false, null, "hoanhdung280517@gmail.com", "Admin", "AQAAAAEAACcQAAAAELBOV7jhCsuie8/AePivWlnLj9JLITQgDW4R2gdMp6qua0q3Fkq4G3x6xs6UkYi3OA==", null, false, 1, "", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Languages",
@@ -54,7 +54,7 @@ namespace RSSolution.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Meals",
                 columns: new[] { "Id", "DateCreated", "IsFeatured", "Price" },
-                values: new object[] { 1, new DateTime(2021, 6, 23, 14, 0, 44, 940, DateTimeKind.Local).AddTicks(4868), null, 200000m });
+                values: new object[] { 1, new DateTime(2021, 6, 25, 0, 2, 41, 731, DateTimeKind.Local).AddTicks(3499), null, 200000m });
 
             migrationBuilder.InsertData(
                 table: "Slides",
