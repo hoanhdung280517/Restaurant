@@ -10,8 +10,8 @@ using RSSolution.Data.EF;
 namespace RSSolution.Data.Migrations
 {
     [DbContext(typeof(RSDbContext))]
-    [Migration("20210623070045_user-1.1")]
-    partial class user11
+    [Migration("20210624165835_user-1.0")]
+    partial class user10
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,13 +94,6 @@ namespace RSSolution.Data.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.ToTable("AppUserRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
-                            RoleId = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc")
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -135,23 +128,6 @@ namespace RSSolution.Data.Migrations
                     b.HasKey("Key");
 
                     b.ToTable("AppConfigs");
-
-                    b.HasData(
-                        new
-                        {
-                            Key = "HomeTitle",
-                            Value = "This is home page of RSSolution"
-                        },
-                        new
-                        {
-                            Key = "HomeKeyword",
-                            Value = "This is keyword of RSSolution"
-                        },
-                        new
-                        {
-                            Key = "HomeDescription",
-                            Value = "This is description of RSSolution"
-                        });
                 });
 
             modelBuilder.Entity("RSSolution.Data.Entities.AppRole", b =>
@@ -177,16 +153,6 @@ namespace RSSolution.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "492a032a-aeeb-4b1a-9313-aa4f6e551a87",
-                            Description = "Administrator role",
-                            Name = "admin",
-                            NormalizedName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("RSSolution.Data.Entities.AppUser", b =>
@@ -263,29 +229,6 @@ namespace RSSolution.Data.Migrations
                     b.HasIndex("ProvinceId");
 
                     b.ToTable("AppUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "5c766b65-8409-4631-a3d1-b43ae63af1a5",
-                            DistrictId = 1,
-                            Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "hoanhdung280517@gmail.com",
-                            EmailConfirmed = true,
-                            FirstName = "Dung",
-                            LastName = "Ho",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "hoanhdung280517@gmail.com",
-                            NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIpPOgq5N5ZbnprZb84cOR4qAqZBb235woHtwKob65ul3+29fUjiPUUOP85ncQJYPA==",
-                            PhoneNumberConfirmed = false,
-                            ProvinceId = 1,
-                            SecurityStamp = "",
-                            TwoFactorEnabled = false,
-                            UserName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("RSSolution.Data.Entities.Cart", b =>
@@ -397,20 +340,6 @@ namespace RSSolution.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Languages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "vi",
-                            IsDefault = true,
-                            Name = "Tiếng Việt"
-                        },
-                        new
-                        {
-                            Id = "en",
-                            IsDefault = false,
-                            Name = "English"
-                        });
                 });
 
             modelBuilder.Entity("RSSolution.Data.Entities.Meal", b =>
@@ -439,15 +368,6 @@ namespace RSSolution.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Meals");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateCreated = new DateTime(2021, 6, 23, 14, 0, 44, 940, DateTimeKind.Local).AddTicks(4868),
-                            Price = 200000m,
-                            ViewCount = 0
-                        });
                 });
 
             modelBuilder.Entity("RSSolution.Data.Entities.MealCategory", b =>
@@ -476,22 +396,6 @@ namespace RSSolution.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MealCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            IsShowOnHome = true,
-                            SortOrder = 1,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            IsShowOnHome = true,
-                            SortOrder = 2,
-                            Status = 0
-                        });
                 });
 
             modelBuilder.Entity("RSSolution.Data.Entities.MealCategoryTranslation", b =>
@@ -537,48 +441,6 @@ namespace RSSolution.Data.Migrations
                     b.HasIndex("MealCategoryId");
 
                     b.ToTable("MealCategoryTranslations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            LanguageId = "vi",
-                            MealCategoryId = 1,
-                            Name = "Món nướng",
-                            SeoAlias = "mon-nuong",
-                            SeoDescription = "Các món ăn nướng",
-                            SeoTitle = "Món ăn nướng"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            LanguageId = "en",
-                            MealCategoryId = 1,
-                            Name = "BBQ",
-                            SeoAlias = "grilled-dishes",
-                            SeoDescription = "The grilled dishes",
-                            SeoTitle = "The grilled dishes"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            LanguageId = "vi",
-                            MealCategoryId = 2,
-                            Name = "Nước",
-                            SeoAlias = "nuoc",
-                            SeoDescription = "Các loại đồ uống",
-                            SeoTitle = "Các loại đồ uống"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            LanguageId = "en",
-                            MealCategoryId = 2,
-                            Name = "Water",
-                            SeoAlias = "water",
-                            SeoDescription = "The Beverages",
-                            SeoTitle = "The Beverages"
-                        });
                 });
 
             modelBuilder.Entity("RSSolution.Data.Entities.MealImage", b =>
@@ -634,13 +496,6 @@ namespace RSSolution.Data.Migrations
                     b.HasIndex("MealId");
 
                     b.ToTable("MealInCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            MealCategoryId = 1,
-                            MealId = 1
-                        });
                 });
 
             modelBuilder.Entity("RSSolution.Data.Entities.MealTranslation", b =>
@@ -691,32 +546,6 @@ namespace RSSolution.Data.Migrations
                     b.HasIndex("MealId");
 
                     b.ToTable("MealTranslations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Bò bít tết",
-                            Details = "Bò bít tết",
-                            LanguageId = "vi",
-                            MealId = 1,
-                            Name = "Bò bít tết",
-                            SeoAlias = "bo-bit-tet",
-                            SeoDescription = "Bò bít tết",
-                            SeoTitle = "Bò bít tết"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Beef Steak",
-                            Details = "Beef Steak",
-                            LanguageId = "en",
-                            MealId = 1,
-                            Name = "Beef Steak",
-                            SeoAlias = "Beef-Steak",
-                            SeoDescription = "Beef Steak",
-                            SeoTitle = "Beef Steak"
-                        });
                 });
 
             modelBuilder.Entity("RSSolution.Data.Entities.Order", b =>
@@ -893,68 +722,6 @@ namespace RSSolution.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Slides");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-                            Image = "/themes/images/carousel/1.png",
-                            Name = "Second Thumbnail label",
-                            SortOrder = 1,
-                            Status = 1,
-                            Url = "#"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-                            Image = "/themes/images/carousel/2.png",
-                            Name = "Second Thumbnail label",
-                            SortOrder = 2,
-                            Status = 1,
-                            Url = "#"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-                            Image = "/themes/images/carousel/3.png",
-                            Name = "Second Thumbnail label",
-                            SortOrder = 3,
-                            Status = 1,
-                            Url = "#"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-                            Image = "/themes/images/carousel/4.png",
-                            Name = "Second Thumbnail label",
-                            SortOrder = 4,
-                            Status = 1,
-                            Url = "#"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-                            Image = "/themes/images/carousel/5.png",
-                            Name = "Second Thumbnail label",
-                            SortOrder = 5,
-                            Status = 1,
-                            Url = "#"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-                            Image = "/themes/images/carousel/6.png",
-                            Name = "Second Thumbnail label",
-                            SortOrder = 6,
-                            Status = 0,
-                            Url = "#"
-                        });
                 });
 
             modelBuilder.Entity("RSSolution.Data.Entities.Table", b =>

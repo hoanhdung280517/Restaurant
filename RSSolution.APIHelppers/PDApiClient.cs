@@ -23,11 +23,12 @@ namespace RSSolution.APIHelpers
 
         public async Task<List<DistrictVm>> GetAllDistrict()
         {
-            return await GetListAsync<DistrictVm>("/api/district");
+            return await GetListAsync<DistrictVm>("/api/pD/district");
         }
         public async Task<List<ProvinceVm>> GetAllProvince()
         {
-            return await GetListAsync<ProvinceVm>("/api/province");
+            return await GetListAsync<ProvinceVm>("/api/pD/province");
         }
+
     }
 }

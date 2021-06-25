@@ -32,7 +32,7 @@ namespace RestaurantAPI.Controllers
         {
             var meal = await _mealService.GetById(mealId, languageId);
             if (meal == null)
-                return BadRequest("Cannot find product");
+                return BadRequest("Cannot find Meal");
             return Ok(meal);
         }
 
@@ -164,7 +164,7 @@ namespace RestaurantAPI.Controllers
             return Ok(image);
         }
 
-        [HttpPut("{id}/categories")]
+        [HttpPut("{id}/mealCategories")]
         [Authorize]
         public async Task<IActionResult> CategoryAssign(int id, [FromBody] CategoryAssignRequest request)
         {

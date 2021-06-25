@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RSSolution.Application.Catalog.MealCategories;
 using RSSolution.Application.Catalog.Meals;
+using RSSolution.Application.Catalog.Tables;
 using RSSolution.Application.Common;
 using RSSolution.Application.System.Languages;
 using RSSolution.Application.System.Roles;
@@ -62,14 +63,13 @@ namespace RestaurantAPI
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IPDService, PDService>();
+            services.AddTransient<ITableService, TableService>();
             services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
             services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
 
             services.AddControllers()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>())
-                .AddNewtonsoftJson(options =>
-                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-                    ); 
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger RS Solution", Version = "v1" });

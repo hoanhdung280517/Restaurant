@@ -180,7 +180,7 @@ namespace RSSolution.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "492a032a-aeeb-4b1a-9313-aa4f6e551a87",
+                            ConcurrencyStamp = "a3fdd4d8-04f4-4d26-b832-5cba98d8b5ba",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -267,22 +267,22 @@ namespace RSSolution.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5c766b65-8409-4631-a3d1-b43ae63af1a5",
+                            ConcurrencyStamp = "02c8678e-cc64-48cf-9336-f908841f7905",
                             DistrictId = 1,
-                            Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Dob = new DateTime(2000, 9, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "hoanhdung280517@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Dung",
                             LastName = "Ho",
                             LockoutEnabled = false,
                             NormalizedEmail = "hoanhdung280517@gmail.com",
-                            NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIpPOgq5N5ZbnprZb84cOR4qAqZBb235woHtwKob65ul3+29fUjiPUUOP85ncQJYPA==",
+                            NormalizedUserName = "Admin",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPqFF0Mm3fx3nTekF1j7QUZiiDqVAGwZH1cjn22vjadXOi6wsJpWAIzyVQjc+2Jitw==",
                             PhoneNumberConfirmed = false,
                             ProvinceId = 1,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
-                            UserName = "admin"
+                            UserName = "Admin"
                         });
                 });
 
@@ -442,7 +442,7 @@ namespace RSSolution.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2021, 6, 23, 14, 0, 44, 940, DateTimeKind.Local).AddTicks(4868),
+                            DateCreated = new DateTime(2021, 6, 25, 10, 34, 53, 404, DateTimeKind.Local).AddTicks(9732),
                             Price = 200000m,
                             ViewCount = 0
                         });

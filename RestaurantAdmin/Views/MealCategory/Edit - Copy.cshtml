@@ -1,0 +1,57 @@
+﻿@model RSSolution.ViewModels.Catalog.MealCategories.MealCategoryUpdateRequest
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#txt_details'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+    </script>
+}
+<div id="page-wrapper">
+    <div class="main-page">
+        <center> <h1 class="mt-4">Update Meal Category</h1></center><hr />
+        <div class="grid-bottom widget-shadow">
+            <form asp-action="Edit" enctype="multipart/form-data" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SeoDescription" class="control-label"></label>
+                    <input asp-for="SeoDescription" class="form-control" />
+                    <span asp-validation-for="SeoDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SeoTitle" class="control-label"></label>
+                    <input asp-for="SeoTitle" class="form-control" />
+                    <span asp-validation-for="SeoTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SeoAlias" class="control-label"></label>
+                    <input asp-for="SeoAlias" class="form-control" />
+                    <span asp-validation-for="SeoAlias" class="text-danger"></span>
+                </div>
+                <center>
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                        <a class="btn btn-success" asp-action="Index" asp-controller="MealCategory">Back to list</a>
+                    </div>
+                </center>
+            </form>
+        </div>
+    </div>
+</div>

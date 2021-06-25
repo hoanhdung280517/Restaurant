@@ -18,17 +18,18 @@ namespace RSSolution.Application.System.Users
         {
             _context = context;
         }
-        public async Task<ApiResult<List<DistrictVm>>> GetAllDistrict()
+        public async Task<List<DistrictVm>> GetAllDistrict()
         {
-           var district = await _context.Districts.Select(x => new DistrictVm()
+           var district = await _context.Districts
+                .Select(x => new DistrictVm()
            {
                Id = x.Id,
                Name = x.Name,
                Prefix = x.Prefix
            }).ToListAsync();
-            return new ApiSuccessResult<List<DistrictVm>>(district);
+            return district;
         }
-        public async Task<ApiResult<List<ProvinceVm>>> GetAllProvince()
+        public async Task<List<ProvinceVm>> GetAllProvince()
         {
             var province = await _context.Provinces.Select(x => new ProvinceVm()
             {
@@ -36,7 +37,7 @@ namespace RSSolution.Application.System.Users
                 Name = x.Name,
                 Code = x.Code
             }).ToListAsync();
-            return new ApiSuccessResult<List<ProvinceVm>>(province);
+            return province;
         }
     }
 }

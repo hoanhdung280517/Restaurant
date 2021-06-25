@@ -23,7 +23,7 @@ namespace RSSolution.Application.Catalog.Meals
 
         Task<PagedResult<MealVm>> GetAllPaging(GetManageMealPagingRequest request);
 
-        Task<int> AddImage(int productId, MealImageCreateRequest request);
+        Task<int> AddImage(int mealId, MealImageCreateRequest request);
 
         Task<int> RemoveImage(int imageId);
 

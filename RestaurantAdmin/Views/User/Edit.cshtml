@@ -1,0 +1,62 @@
+﻿@model RSSolution.ViewModels.System.Users.UserUpdateRequest
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+<div id="page-wrapper">
+    <div class="main-page">
+        <center><h3 class="title1">Edit Table</h3></center>
+        <div class="grid-bottom widget-shadow">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Dob" class="control-label"></label>
+                    <input asp-for="Dob" class="form-control" />
+                    <span asp-validation-for="Dob" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber" class="control-label"></label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <select name="DistrictId" asp-items="@ViewBag.District" class="form-control">
+                        <option>--Select District--</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select name="ProvinceId" asp-items="@ViewBag.Province" class="form-control">
+                        <option>--Select Province--</option>
+                    </select>
+                </div>
+                <hr />
+                <center>
+                    <div class="edu_button">
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                    </div>
+                </center>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

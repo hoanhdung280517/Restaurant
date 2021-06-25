@@ -78,5 +78,6 @@ namespace RSSolution.Data.EF
         public DbSet<Slide> Slides { get; set; }
         public DbSet<District> Districts { get; set; }
         public DbSet<Province> Provinces { get; set; }
+        public DbSet<Table> Tables { get; set; }
     }
 }

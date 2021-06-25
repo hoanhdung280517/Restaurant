@@ -10,7 +10,7 @@ namespace RSSolution.Application.System.Users
 {
     public interface IPDService
     {
-        Task<ApiResult<List<DistrictVm>>> GetAllDistrict();
-        Task<ApiResult<List<ProvinceVm>>> GetAllProvince();
+        Task<List<DistrictVm>> GetAllDistrict();
+        Task<List<ProvinceVm>> GetAllProvince();
     }
 }
