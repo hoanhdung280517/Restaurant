@@ -9,6 +9,8 @@ namespace RSSolution.ViewModels.System.Users
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Province { get; set; }
+        public string District { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime Dob { get; set; }

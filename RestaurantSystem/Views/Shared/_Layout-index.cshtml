@@ -1,0 +1,300 @@
+﻿<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Royal Recipes a Hotels and restaurants Category Flat Bootstrap responsive Website Template | Home :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Royal Recipes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <!-- bootstrap-css -->
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <!--// bootstrap-css -->
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <!--// css -->
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css" media="all">
+    <link href="css/owl.theme.css" rel="stylesheet">
+    <!-- font-awesome icons -->
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- font -->
+    <link href='//fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
+    <!-- //font -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <!-- light-box -->
+    <link rel="stylesheet" href="css/lightbox.css">
+    <!-- //light-box -->
+    <script src="js/SmoothScroll.min.js"></script>
+    <!--search jQuery-->
+    <script src="js/main.js"></script>
+    <!--//search jQuery-->
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+
+                autoPlay: 3000, //Set AutoPlay to 3 seconds
+                autoPlay: true,
+                items: 4,
+                itemsDesktop: [640, 5],
+                itemsDesktopSmall: [414, 4]
+
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div class="w3layouts-banner-top">
+
+    </div>
+    <!-- banner -->
+    <div class="banner">
+        <div class="top-banner">
+            <div class="container">
+                <div class="top-banner-left">
+                    <ul>
+                        <li>
+                            <language-nav language-label="NativeName"
+                                          cookie-handler-url="@(Url.Action("SetCultureCookie", "Home", new { area= "", cltr="{0}", returnUrl="{1}" }))">
+                            </language-nav>
+                        </li>
+                    </ul>
+                </div>
+                <div class="top-banner-right">
+                    <ul>
+                        @if (User.Identity.Name != null)
+                        {
+                            <li class="nav" style="padding-top:8px">
+                                <a class="sign" title="Manage">@User.Identity.Name!</a>
+                            </li>
+                            <li class="nav" style="padding-top:8px">
+                                <a>|</a>
+                            </li>
+                            <li class="nav">
+                                <form class="sign" asp-controller="Account" asp-action="Logout">
+                                    <button type="submit" class="btn btn-block me-md-2">Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav">
+                                <a asp-area="" asp-controller="Account" asp-action="Login">Login|</a>
+                                <a asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="header">
+            <div class="container">
+                <div class="logo">
+                    <h1>
+                        <a asp-area="" asp-controller="Home" asp-action="Index"><localize>Restaurant System</localize></a>
+                    </h1>
+                </div>
+                <div class="top-nav">
+                    <nav class="navbar navbar-default">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            Menu
+                        </button>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a asp-area="" asp-controller="Home" asp-action="Index"><localize>Home</localize></a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="About"><localize>About</localize></a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Admin"))
+                                    {
+                                        <li>
+                                            <a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Functions<span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li> @Html.ActionLink("Manage System", "Index", "User")</li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    if (User.IsInRole("User"))
+                                    {
+                                        <li><a asp-area="" asp-controller="Home" asp-action="Menu">Menu</a></li>
+                                    }
+                                }
+                                <li><a asp-area="" asp-controller="Home" asp-action="Contact"><localize>Contact</localize></a></li>
+                            </ul>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="banner-slider">
+            <div class="container">
+                <div class="slider">
+                    <div class="callbacks_container">
+                        <ul class="rslides callbacks callbacks1" id="slider4">
+                            <li>
+                                <div class="agileits-banner-info">
+                                    <h3><localize>Instant food, instant hunger</localize></h3>
+                                    <p> <localize>"Words don't cost money to buy", so why don't we give cooks a word of encouragement to make them happier, work hard to cook better?</localize>  </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="agileits-banner-info">
+                                    <h3><localize>Love is to say, hunger is to eat</localize></h3>
+                                    <p><localize>Love is put in the dish as a spice to make the dish richer. So when we appreciate the effort of the cook, we will feel more appetizing.</localize> </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="agileits-banner-info">
+                                    <h3><localize>Eating is love - criticism does not count</localize></h3>
+                                    <p><localize>Some people think that a delicious dish must first be beautiful. Only when you feel beautiful, do you want to eat that dish. But for others, a good dish is in the mind of the cook and how the user enjoys it.</localize></p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <script src="js/responsiveslides.min.js"></script>
+                    <script>
+                        // You can also use "$(window).load(function() {"
+                        $(function () {
+                            // Slideshow 4
+                            $("#slider4").responsiveSlides({
+                                auto: true,
+                                pager: true,
+                                nav: false,
+                                speed: 500,
+                                namespace: "callbacks",
+                                before: function () {
+                                    $('.events').append("<li>before event fired.</li>");
+                                },
+                                after: function () {
+                                    $('.events').append("<li>after event fired.</li>");
+                                }
+                            });
+
+                        });
+                    </script>
+                    <!--banner Slider starts Here-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <!-- footer -->
+    <div class="w3-agile-footer">
+        <div class="container">
+            <div class="footer-grids">
+                <div class="col-md-3 footer-grid">
+                    <div class="footer-grid-heading">
+                        <h4><localize>Address</localize></h4>
+                    </div>
+                    <div class="footer-grid-info">
+                        <p>
+                            <span>40 / 6D Nam Thoi Hamlet, Thoi Tam Thon Commune, Hoc Mon District</span>
+                        </p>
+                        <p class="phone">
+                            <localize>Phone</localize> : +84 0899760097
+                            <span>Email : <a href="https://mail.google.com/mail/u/1/">dunghagcs18594@fpt.edu.vn</a></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3 footer-grid">
+                    <div class="footer-grid-heading">
+                        <h4><localize>Navigation</localize></h4>
+                    </div>
+                    <div class="footer-grid-info">
+                        <ul>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index"><localize>Home</localize></a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="About"><localize>About</localize></a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Menu">Menu</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Contact"><localize>Contact</localize></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 footer-grid">
+                    <div class="footer-grid-heading">
+                        <h4><localize>Follow</localize></h4>
+                    </div>
+                    <div class="social">
+                        <ul>
+                            <li><a href="https://www.facebook.com/hoanhdung01"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/home"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                            <li><a href="#"><i class="fa fa-vk"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 footer-grid">
+                    <div class="footer-grid-heading">
+                        <h4><localize>Newsletter</localize></h4>
+                    </div>
+                    <div class="footer-grid-info">
+                        <form action="#" method="post">
+                            <input type="email" id="mc4wp_email" name="EMAIL" placeholder="Enter your email here" required="">
+                            <input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="agileits-w3layouts-copyright">
+                <p>© 2021 Restaurant System . All Rights Reserved | Design by Hồ Anh Dũng </p>
+            </div>
+        </div>
+    </div>
+    <!-- //footer -->
+    <script src="js/owl.carousel.js"></script>
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <!-- here stars scrolling icon -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+                var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+                };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+    <!-- //here ends scrolling icon -->
+    <script type="text/javascript">
+        /* init Jarallax */
+        $('.jarallax').jarallax({
+            speed: 0.5,
+            imgWidth: 1366,
+            imgHeight: 768
+        })
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -7,7 +7,7 @@ namespace RestaurantAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+
     public class SlidesController : ControllerBase
     {
         private readonly ISlideService _slideService;

@@ -10,6 +10,7 @@ namespace RestaurantAPI.Controllers
     //api/products
     [Route("api/[controller]")]
     [ApiController]
+    
     public class MealsController : ControllerBase
     {
         private readonly IMealService _mealService;

@@ -1,0 +1,231 @@
+﻿@{
+    Layout = "_Layout-index";
+    ViewData["Title"] = "Home Page";
+}
+<!-- services -->
+<div class="services" id="services">
+    <div class="container">
+        <div class="services-heading">
+            <h2><localize>Our Services</localize></h2>
+        </div>
+        <div class="w3-agileits-services-grids">
+            <div class="col-md-4 w3-agileits-services-left">
+                <div class="services-info">
+
+                </div>
+            </div>
+            <div class="col-md-8 w3-agileits-services-right">
+                <div class="services-right-grids">
+                    <div class="col-sm-6 services-right-grid">
+                        <div class="services-icon hvr-radial-in">
+                            <i class="fa fa-anchor" aria-hidden="true"></i>
+                        </div>
+                        <div class="services-icon-info">
+                            <h5><localize>Service set up store</localize></h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed orci enim, posuere sed tincidunt et, pellentesque eget mi.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 services-right-grid">
+                        <div class="services-icon hvr-radial-in">
+                            <i class="fa fa-comment" aria-hidden="true"></i>
+                        </div>
+                        <div class="services-icon-info">
+                            <h5><localize>Comment service</localize></h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed orci enim, posuere sed tincidunt et, pellentesque eget mi.</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="services-right-grids">
+                    <div class="col-sm-6 services-right-grid">
+                        <div class="services-icon hvr-radial-in">
+                            <i class="fa fa-heartbeat" aria-hidden="true"></i>
+                        </div>
+                        <div class="services-icon-info">
+                            <h5><localize>"Takeaway" service</localize></h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed orci enim, posuere sed tincidunt et, pellentesque eget mi.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 services-right-grid">
+                        <div class="services-icon hvr-radial-in">
+                            <i class="fa fa-magnet" aria-hidden="true"></i>
+                        </div>
+                        <div class="services-icon-info">
+                            <h5><localize>Served directly at the restaurant</localize></h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed orci enim, posuere sed tincidunt et, pellentesque eget mi.</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="services-right-grids">
+                    <div class="col-sm-6 services-right-grid">
+                        <div class="services-icon hvr-radial-in">
+                            <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                        </div>
+                        <div class="services-icon-info">
+                            <h5><localize>Delivery service</localize></h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed orci enim, posuere sed tincidunt et, pellentesque eget mi.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 services-right-grid">
+                        <div class="services-icon hvr-radial-in">
+                            <i class="fa fa-heartbeat" aria-hidden="true"></i>
+                        </div>
+                        <div class="services-icon-info">
+                            <h5><localize>Catering service</localize></h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed orci enim, posuere sed tincidunt et, pellentesque eget mi.</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //services -->
+<!-- offer -->
+<div class="jarallax offer">
+    <div class="container">
+        <div class="w3l-offer-heading">
+            <h3><localize>Today Offers</localize></h3>
+        </div>
+        <div class="w3ls-offer-slider">
+            <div class="slider">
+                <div class="callbacks_container">
+                    <ul class="rslides callbacks callbacks1" id="slider3">
+                        <li>
+                            <div class="agileinfo-offer-grid">
+                                <h4>40<span>%</span></h4>
+                                <h5>Pork Vindaloo</h5>
+                                <p>Quisque scelerisque rutrum nunc, eget hendrerit diam porta efficitur. Duis bibendum consequat est, sed efficitur arcu. Morbi viverra, leo sit amet vestibulum dignissim, tortor est dignissim dolor, eu accumsan est urna id felis. </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="agileinfo-offer-grid">
+                                <h4>56%</h4>
+                                <h5>Phaal Curry</h5>
+                                <p>Vestibulum euismod porttitor interdum. Vivamus porta consectetur nulla porttitor hendrerit. Pellentesque ultrices augue ut nibh feugiat, nec egestas orci cursus. Sed vehicula quis erat sed lobortis. Curabitur eleifend sit amet.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="agileinfo-offer-grid">
+                                <h4>84%</h4>
+                                <h5>Laal Maas</h5>
+                                <p>Aenean volutpat auctor ultrices. Aliquam ac turpis ultrices, porta enim at, interdum velit. Ut ligula justo, sodales eu nisi a, molestie dictum leo. Sed blandit porta ante, at consequat nulla fermentum a. Donec aliquet tristique.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <script>
+                        // You can also use "$(window).load(function() {"
+                        $(function () {
+                            // Slideshow 4
+                            $("#slider3").responsiveSlides({
+                                auto: true,
+                                pager: false,
+                                nav: false,
+                                speed: 500,
+                                namespace: "callbacks",
+                                before: function () {
+                                    $('.events').append("<li>before event fired.</li>");
+                                },
+                                after: function () {
+                                    $('.events').append("<li>after event fired.</li>");
+                                }
+                            });
+
+                        });
+                </script>
+                <!--banner Slider starts Here-->
+            </div>
+        </div>
+        <script src="~/js/jarallax.js"></script>
+    </div>
+</div>
+<!-- //offer -->
+<!-- special -->
+<div class="special">
+    <div class="container">
+        <div class="wthree-special-heading">
+            <h3><localize>Today Special</localize></h3>
+        </div>
+        <div class="special-grids">
+            <div id="owl-demo" class="owl-carousel owl-theme">
+                <div class="item">
+                    <div class="w3-agileits-special-grid-info">
+                        <img src="~/images/s1.jpg" alt="" />
+                        <div class="agile-special-grid-text">
+                            <h5>Pellentesque justo enim, tempor et tellus eu, molestie viverra ligula.</h5>
+                            <p><del>$20</del> $15</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="w3-agileits-special-grid-info">
+                        <img src="~/images/s2.jpg" alt="" />
+                        <div class="agile-special-grid-text">
+                            <h5>Pellentesque justo enim, tempor et tellus eu, molestie viverra ligula.</h5>
+                            <p><del>$25</del> $10</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="w3-agileits-special-grid-info">
+                        <img src="~/images/s3.jpg" alt="" />
+                        <div class="agile-special-grid-text">
+                            <h5>Pellentesque justo enim, tempor et tellus eu, molestie viverra ligula.</h5>
+                            <p><del>$16</del> $12</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="w3-agileits-special-grid-info">
+                        <img src="~/images/s4.jpg" alt="" />
+                        <div class="agile-special-grid-text">
+                            <h5>Pellentesque justo enim, tempor et tellus eu, molestie viverra ligula.</h5>
+                            <p><del>$32</del> $22</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="w3-agileits-special-grid-info">
+                        <img src="~/images/s1.jpg" alt="" />
+                        <div class="agile-special-grid-text">
+                            <h5>Pellentesque justo enim, tempor et tellus eu, molestie viverra ligula.</h5>
+                            <p><del>$20</del> $15</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="w3-agileits-special-grid-info">
+                        <img src="~/images/s2.jpg" alt="" />
+                        <div class="agile-special-grid-text">
+                            <h5>Pellentesque justo enim, tempor et tellus eu, molestie viverra ligula.</h5>
+                            <p><del>$25</del> $10</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="w3-agileits-special-grid-info">
+                        <img src="~/images/s3.jpg" alt="" />
+                        <div class="agile-special-grid-text">
+                            <h5>Pellentesque justo enim, tempor et tellus eu, molestie viverra ligula.</h5>
+                            <p><del>$16</del> $12</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="w3-agileits-special-grid-info">
+                        <img src="~/images/s4.jpg" alt="" />
+                        <div class="agile-special-grid-text">
+                            <h5>Pellentesque justo enim, tempor et tellus eu, molestie viverra ligula.</h5>
+                            <p><del>$32</del> $22</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //special -->

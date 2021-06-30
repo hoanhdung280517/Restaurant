@@ -18,8 +18,8 @@ namespace RSSolution.Utilities.Constants
 
         public class MealSettings
         {
-            public const int NumberOfFeaturedMeals = 4;
-            public const int NumberOfLatestMeals = 6;
+            public const int NumberOfFeaturedMeals = 12;
+            public const int NumberOfLatestMeals = 21;
         }
 
         public class MealConstants

@@ -12,6 +12,7 @@ namespace RestaurantAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MealCategoriesController : ControllerBase
     {
         private readonly IMealCategoryService _mealCategoryService;
@@ -23,6 +24,7 @@ namespace RestaurantAPI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAll(string languageId)
         {
             var products = await _mealCategoryService.GetAll(languageId);
@@ -30,6 +32,7 @@ namespace RestaurantAPI.Controllers
         }
 
         [HttpGet("{id}/{languageId}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetById(string languageId, int id)
         {
             var category = await _mealCategoryService.GetById(languageId, id);

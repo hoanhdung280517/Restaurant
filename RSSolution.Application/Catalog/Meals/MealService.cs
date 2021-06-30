@@ -156,7 +156,8 @@ namespace RSSolution.Application.Catalog.Meals
                     SeoAlias = x.pt.SeoAlias,
                     SeoDescription = x.pt.SeoDescription,
                     SeoTitle = x.pt.SeoTitle,
-                    ViewCount = x.p.ViewCount
+                    ViewCount = x.p.ViewCount,
+                    ThumbnailImage = x.pi.ImagePath
                 }).ToListAsync();
 
             //4. Select and projection
@@ -181,7 +182,7 @@ namespace RSSolution.Application.Catalog.Meals
                                     join pic in _context.MealInCategories on c.Id equals pic.MealCategoryId
                                     where pic.MealId == mealId && ct.LanguageId == languageId
                                     select ct.Name).ToListAsync();
-
+            var image = await _context.MealImages.Where(x => x.MealId == mealId && x.IsDefault == true).FirstOrDefaultAsync();
             var mealViewModel = new MealVm()
             {
                 Id = meal.Id,
@@ -195,7 +196,8 @@ namespace RSSolution.Application.Catalog.Meals
                 SeoDescription = mealTranslation != null ? mealTranslation.SeoDescription : null,
                 SeoTitle = mealTranslation != null ? mealTranslation.SeoTitle : null,
                 ViewCount = meal.ViewCount,
-                MealCategories = mealCategories
+                MealCategories = mealCategories,
+                ThumbnailImage = image != null ? image.ImagePath : "no-image.jpg"
             };
             return mealViewModel;
         }

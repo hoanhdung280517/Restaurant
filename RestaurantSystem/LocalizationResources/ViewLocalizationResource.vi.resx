@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="&quot;Takeaway&quot; service" xml:space="preserve">
+    <value>Dịch vụ “đồ ăn mang về”</value>
+    <comment>Index</comment>
+  </data>
+  <data name="&quot;Words don't cost money to buy&quot;, so why don't we give cooks a word of encouragement to make them happier, work hard to cook better?" xml:space="preserve">
+    <value>“Lời nói không mất tiền mua”, vậy tại sao chúng ta không dành cho người nấu ăn một lời động viên để họ vui hơn, chăm chỉ nấu ăn ngon hơn?</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Giới thiệu</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Add to" xml:space="preserve">
+    <value>Thêm</value>
+    <comment>Meal/Details</comment>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Địa chỉ</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="All Meals" xml:space="preserve">
+    <value>Các món ăn </value>
+    <comment>Menu</comment>
+  </data>
+  <data name="Catering service" xml:space="preserve">
+    <value>Dịch vụ Catering</value>
+    <comment>Index</comment>
+  </data>
+  <data name="Comment service" xml:space="preserve">
+    <value>Dịch vụ đóng góp ý kiến</value>
+    <comment>Index</comment>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Liên hệ</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Delivery service" xml:space="preserve">
+    <value>Dịch vụ giao hàng tận nơi</value>
+    <comment>Index</comment>
+  </data>
+  <data name="Eating is love - criticism does not count" xml:space="preserve">
+    <value>Ăn là mê – chê không tính tiền</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Favorite meals" xml:space="preserve">
+    <value>Món ăn yêu thích</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="Follow" xml:space="preserve">
+    <value>Theo dõi</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Trang chủ</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Instant food, instant hunger" xml:space="preserve">
+    <value>Thức ăn ngay lập tức, cho cơn đói tức thì</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Đăng nhập</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Love is put in the dish as a spice to make the dish richer. So when we appreciate the effort of the cook, we will feel more appetizing." xml:space="preserve">
+    <value>Tình yêu được đặt trong món ăn như một gia vị để món ăn thêm phong phú. Vì vậy, khi chúng ta đánh giá cao công sức của người nấu, chúng ta sẽ cảm thấy ngon miệng hơn.</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Love is to say, hunger is to eat" xml:space="preserve">
+    <value>Yêu là phải nói, đói là phải ăn</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Meal Details" xml:space="preserve">
+    <value>Mô tả món ăn</value>
+    <comment>Meal/Details</comment>
+  </data>
+  <data name="Meal Information" xml:space="preserve">
+    <value>Thông tin món ăn</value>
+    <comment>Meal/Details</comment>
+  </data>
+  <data name="mealCategoryUrl" xml:space="preserve">
+    <value>danh-muc</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Meals" xml:space="preserve">
+    <value>Các món ăn </value>
+    <comment>Meal/MealCategory</comment>
+  </data>
+  <data name="mealUrl" xml:space="preserve">
+    <value>mon-an</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+    <comment>Meal/MealCategory</comment>
+  </data>
+  <data name="More Details" xml:space="preserve">
+    <value>Thêm mô tả</value>
+    <comment>Meal/Details</comment>
+  </data>
+  <data name="Navigation" xml:space="preserve">
+    <value>Trang</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Newsletter" xml:space="preserve">
+    <value>Góp ý</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Our Services" xml:space="preserve">
+    <value>Dịch vụ của chúng tôi</value>
+    <comment>Index</comment>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Số điện thoại</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Đăng kí</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Restaurant System" xml:space="preserve">
+    <value>Nhà Hàng</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Served directly at the restaurant" xml:space="preserve">
+    <value>Phục vụ trực tiếp tại nhà hàng</value>
+    <comment>Index</comment>
+  </data>
+  <data name="Service set up store" xml:space="preserve">
+    <value>Dịch vụ đặt giữ chỗ nhà hàng</value>
+    <comment>Index</comment>
+  </data>
+  <data name="Some people think that a delicious dish must first be beautiful. Only when you feel beautiful, do you want to eat that dish. But for others, a good dish is in the mind of the cook and how the user enjoys it." xml:space="preserve">
+    <value>Có người cho rằng một món ăn ngon trước hết phải đẹp. Chỉ khi đẹp lên mới thấy thích thì mới có ý muốn ăn món đó. Nhưng với những người khác, một món ăn ngon là ở tâm thế của người nấu và cách người dùng thưởng thức.</value>
+    <comment>Layouts</comment>
+  </data>
+  <data name="Sort By" xml:space="preserve">
+    <value>Sắp xếp</value>
+    <comment>Meal/MealCategory</comment>
+  </data>
+  <data name="Today Offers" xml:space="preserve">
+    <value>Chương trình khuyến mãi</value>
+    <comment>Index</comment>
+  </data>
+  <data name="Today Special" xml:space="preserve">
+    <value>Các món đặt biệt ngày hôm nay</value>
+    <comment>Index</comment>
+  </data>
+  <data name="View Details" xml:space="preserve">
+    <value>Xem chi tiết</value>
+    <comment>Meal/MealCategory</comment>
+  </data>
+</root>
