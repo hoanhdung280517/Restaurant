@@ -1,0 +1,91 @@
+﻿@model RSSolution.ViewModels.Catalog.BookTables.BookTableViewModel
+@using RSSolution.Data.Enums;
+@{
+    ViewData["Title"] = "Details BookTable";
+    Layout = "_Layout-Page";
+}
+@{ var culture = CultureInfo.CurrentCulture.Name; }
+<div id="page-wrapper">
+    <div class="main-page">
+        <hr />
+        <table class="table table-bordered">
+            <thead class="table-dark bg-primary text-center">
+                <tr>
+                    <center>
+                        <th colspan="2">
+                            <center><h3>@Model.UserName Booking Table / @Model.BookDate</h3></center>
+                        </th>
+                    </center>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.UserName)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Email)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Note)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Note)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CountAdults)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.CountAdults)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CountChilds)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.CountChilds)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <td>
+                        <form action="/@culture/BookTable/Details" method="post">
+                            <input type="hidden" asp-for="Id" />
+                            <select asp-for="Status" asp-items="Html.GetEnumSelectList<BookTableStatus>()" name="Status"></select>
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <center>
+        <div class="edu_button">
+            <a href='javascript:history.go(-1)' class="btn btn-primary">Back to list</a>
+        </div>
+    </center>
+</div>
+<hr />

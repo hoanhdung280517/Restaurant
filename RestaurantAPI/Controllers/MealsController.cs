@@ -10,7 +10,6 @@ namespace RestaurantAPI.Controllers
     //api/products
     [Route("api/[controller]")]
     [ApiController]
-    
     public class MealsController : ControllerBase
     {
         private readonly IMealService _mealService;
@@ -52,10 +51,8 @@ namespace RestaurantAPI.Controllers
             var meal = await _mealService.GetLatestMeals(languageId, take);
             return Ok(meal);
         }
-
         [HttpPost]
         [Consumes("multipart/form-data")]
-        [Authorize]
         public async Task<IActionResult> Create([FromForm] MealCreateRequest request)
         {
             if (!ModelState.IsValid)
@@ -67,13 +64,11 @@ namespace RestaurantAPI.Controllers
                 return BadRequest();
 
             var meal = await _mealService.GetById(mealId, request.LanguageId);
-
             return CreatedAtAction(nameof(GetById), new { id = mealId }, meal);
         }
 
         [HttpPut("{mealId}")]
         [Consumes("multipart/form-data")]
-        [Authorize]
         public async Task<IActionResult> Update([FromRoute] int mealId, [FromForm] MealUpdateRequest request)
         {
             if (!ModelState.IsValid)
@@ -88,7 +83,6 @@ namespace RestaurantAPI.Controllers
         }
 
         [HttpDelete("{mealId}")]
-        [Authorize]
         public async Task<IActionResult> Delete(int mealId)
         {
             var affectedResult = await _mealService.Delete(mealId);
@@ -97,11 +91,14 @@ namespace RestaurantAPI.Controllers
             return Ok();
         }
 
-        [HttpPatch("{mealId}/{newPrice}")]
-        [Authorize]
-        public async Task<IActionResult> UpdatePrice(int mealId, decimal newPrice)
+        [HttpPatch("{mealId}")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> UpdatePrice([FromRoute] int mealId, [FromForm] MealUpdatePriceRequest request)
         {
-            var isSuccessful = await _mealService.UpdatePrice(mealId, newPrice);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            request.Id = mealId;
+            var isSuccessful = await _mealService.UpdatePrice( request);
             if (isSuccessful)
                 return Ok();
 
@@ -110,7 +107,6 @@ namespace RestaurantAPI.Controllers
 
         //Images
         [HttpPost("{mealId}/images")]
-
         public async Task<IActionResult> CreateImage(int mealId, [FromForm] MealImageCreateRequest request)
         {
             if (!ModelState.IsValid)
@@ -127,7 +123,6 @@ namespace RestaurantAPI.Controllers
         }
 
         [HttpPut("{mealId}/images/{imageId}")]
-        [Authorize]
         public async Task<IActionResult> UpdateImage(int imageId, [FromForm] MealImageUpdateRequest request)
         {
             if (!ModelState.IsValid)
@@ -142,7 +137,6 @@ namespace RestaurantAPI.Controllers
         }
 
         [HttpDelete("{mealId}/images/{imageId}")]
-        [Authorize]
         public async Task<IActionResult> RemoveImage(int imageId)
         {
             if (!ModelState.IsValid)
@@ -166,7 +160,6 @@ namespace RestaurantAPI.Controllers
         }
 
         [HttpPut("{id}/mealCategories")]
-        [Authorize]
         public async Task<IActionResult> CategoryAssign(int id, [FromBody] CategoryAssignRequest request)
         {
             if (!ModelState.IsValid)

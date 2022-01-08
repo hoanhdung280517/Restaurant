@@ -1,4 +1,5 @@
-﻿using RSSolution.ViewModels.Common;
+﻿using RSSolution.Data.Entities;
+using RSSolution.ViewModels.Common;
 using RSSolution.ViewModels.System.Users;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,12 @@ namespace RSSolution.Application.System.Users
         Task<ApiResult<bool>> Update(Guid id, UserUpdateRequest request);
 
         Task<ApiResult<PagedResult<UserVm>>> GetUsersPaging(GetUserPagingRequest request);
-
         Task<ApiResult<UserVm>> GetById(Guid id);
-
+        Task<ApiResult<UserVm>> GetByUserName(string username);
         Task<ApiResult<bool>> Delete(Guid id);
 
         Task<ApiResult<bool>> RoleAssign(Guid id, RoleAssignRequest request);
+        Task<List<UserVm>> GetAll();
+
     }
 }

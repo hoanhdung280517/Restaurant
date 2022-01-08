@@ -1,0 +1,145 @@
+﻿@model RSSolution.ViewModels.Catalog.Meals.MealVm
+@{ 
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+<div id="page-wrapper">
+    <div class="main-page">
+        <center><h3 class="title1">MealDetails</h3></center>
+        <div class="grid-bottom widget-shadow">
+            <table class="table table-bordered">
+                <thead class="table-dark bg-primary text-center">
+                    <tr>
+                        <center>
+                            <th colspan="2">
+                                Meal Detail
+                            </th>
+                        </center>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.Id)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LanguageId)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.LanguageId)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.Name)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateCreated)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.DateCreated)
+                            </th>)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.Description)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Details)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.Details)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.Price)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SeoAlias)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.SeoAlias)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SeoTitle)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.SeoTitle)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SeoDescription)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.SeoDescription)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ThumbnailImage)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.ThumbnailImage)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ViewCount)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.ViewCount)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsFeatured)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.IsFeatured)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MealCategories)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(model => model.MealCategories)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <center>
+                <div class="form-group">
+                    <a class="btn btn-success" asp-action="Index" asp-controller="Meal">Back to meal</a>
+                </div>
+            </center>
+        </div>
+    </div>
+</div>
+

@@ -1,15 +1,13 @@
-﻿@{
-    ViewData["Title"] = "Index";
-    Layout = "_Layout";
-}
-@{
-    var culture = CultureInfo.CurrentCulture.Name;
-}
+﻿@model CheckoutViewModel
+@{ ViewData["Title"] = "Index";
+    Layout = "_Layout"; }
+@{ var culture = CultureInfo.CurrentCulture.Name;}
 <head>
     <meta charset="utf-8">
     <meta name="author" content="">
     <link id="callCss" rel="stylesheet" href="~/themes/bootshop/bootstrap.min.css" media="screen" />
     <link href="~/themes/css/base.css" rel="stylesheet" media="screen" />
+    <link href="~/css/button.css" rel="stylesheet" type="text/css" />
     <link href="~/themes/css/bootstrap-responsive.min.css" rel="stylesheet" />
     <link href="~/themes/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="~/themes/js/google-code-prettify/prettify.css" rel="stylesheet" />
@@ -20,28 +18,25 @@
     <link rel="apple-touch-icon-precomposed" href="~/themes/images/ico/apple-touch-icon-57-precomposed.png">
     <style type="text/css" id="enject"></style>
 </head>
-@section scripts{
-    <script src="~/js/cart.js"></script>
-    <script>
-        var cartController = new CartController();
-        cartController.initialize();
-    </script>
-}
+<input type="hidden" id="hidTableId" value="@Model.TableId" />
+<input type="hidden" id="hidname" value="@User.Identity.Name" />
+@if (TempData["result"] != null)
+{
+<span class="alert alert-success">@TempData["result"]</span>}
 <h3>
-    SHOPPING CART [ <small><span id="lbl_number_of_items">0</span> meal(s) </small>]
-    <a asp-action="Menu" asp-controller="Home" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Order </a>
+    MEAL CART [ <small><span id="lbl_number_of_items">0</span> meal(s) </small>]
+    <a href='javascript:history.go(-1)' class="snip1582 pull-right" style="text-align:center; position:relative ; margin:auto"><i class="icon-arrow-left"></i> Continue Order </a>
 </h3>
 
 <hr class="soft" />
-
 <table class="table table-bordered" id="tbl_cart">
     <thead>
-        <tr>
-            <th>Product</th>
-            <th>Description</th>
-            <th>Quantity/Update</th>
-            <th>Price</th>
-            <th>Total</th>
+        <tr class="danger">
+            <th><center><localize>Meal</localize></center></th>
+            <th><center><localize>Description</localize></center></th>
+            <th><center><localize>Quantity</localize></center></th>
+            <th><center><localize>Price</localize></center></th>
+            <th><center><localize>Total</localize></center></th>
         </tr>
     </thead>
     <tbody id="cart_body">
@@ -49,10 +44,44 @@
     <tfoot>
         <tr>
             <td colspan="4" style="text-align:right"><strong>TOTAL =</strong></td>
-            <td class="label label-important" style="display:block"> <strong> <span id="lbl_total"></span> </strong></td>
+            <td class="label label-important" style="display:block"> <strong> <span id="lbl_total"></span> VND</strong></td>
         </tr>
     </tfoot>
 </table>
-
-<a asp-action="Menu" asp-controller="Home" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Order </a>
-<a href="/@culture/Cart/Checkout" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
+<table class="table table-bordered" style="width: 480px; margin-left: auto; margin-right: auto; ">
+    <thead>
+        <tr class="success"><th><center>Information</center></th></tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <center>
+                    <div class="control-group">
+                        <label class="control-label" for="inputCountry"><strong>Table</strong> :@Model.TableId </label>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputCountry"><strong>User</strong> :@Model.Name </label>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputCountry"><strong>Email</strong>:@Model.Email </label>
+                    </div>
+                </center>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<a href='javascript:history.go(-1)' class="snip1582"><i class="icon-arrow-left"></i> Continue Order </a>
+<form class="form-horizontal" action="/@culture/Cart/Index" method="post">
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="snip1582 pull-right">Order </button>
+        </div>
+    </div>
+</form>
+@section scripts{
+    <script src="~/js/cart.js"></script>
+    <script>
+        var cartController = new CartController();
+        cartController.initialize();
+    </script>
+}

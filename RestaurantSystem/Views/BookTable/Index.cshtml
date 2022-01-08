@@ -1,0 +1,82 @@
+﻿@model IEnumerable<RSSolution.ViewModels.Catalog.BookTables.BookTableViewModel>
+@{ 
+    ViewData["Title"] = "BookTable";
+    Layout = "_Layout-Page";
+}
+<div id="page-wrapper">
+    <div class="main-page">
+        <center><h3 class="title1">Booking Table</h3></center>
+        <div class="grid-bottom widget-shadow">
+            <form asp-action="Index" method="post">
+                <div class="form-group">
+                    <label class="control-label">Date</label>
+                    <input type="date" id="time" name="time" class="form-control" />
+                </div>
+                <center>
+                    <button type="submit" class="btn btn-primary">Find</button>
+                    <a asp-area="" asp-controller="BookTable" asp-action="Index" class="btn btn-primary">Reset</a>
+                </center>              
+            </form>
+            <hr />
+            <div class="row">
+                @if (ViewBag.Success != null)
+                {
+                    <div  id="msgAlert" class="alert alert-danger" role="alert" style="text-align:center;width: 380px; margin-left: auto; margin-right: auto;" >
+                        <h4 style="font-family:'Pacifico', cursive">@ViewBag.Success</h4>
+                    </div>
+                 }
+            </div>
+            <table class="table table-bordered table-striped no-margin grd_tble">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BookDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BookDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+
+                                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>setTimeout(function () {
+            $('#msgAlert').fadeOut('slow');
+    }, 2000);</script>

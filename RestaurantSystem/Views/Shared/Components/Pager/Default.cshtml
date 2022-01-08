@@ -32,10 +32,10 @@
         @if (Model.PageIndex != startIndex)
         {
             <li class="page-item">
-                <a class="page-link" title="1" href="@urlTemplate.Replace("{0}", "1")">Đầu</a>
+                <a class="page-link" title="1" href="@urlTemplate.Replace("{0}", "1")">FrontPage</a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="@urlTemplate.Replace("{0}", (Model.PageIndex-1).ToString())">Trước</a>
+                <a class="page-link" href="@urlTemplate.Replace("{0}", (Model.PageIndex-1).ToString())">PreviousPage</a>
             </li>
         }
         @for (var i = startIndex; i <= finishIndex; i++)
@@ -48,16 +48,16 @@
             }
             else
             {
-                <li class="page-item"><a class="page-link" title="Trang @i.ToString()" href="@urlTemplate.Replace("{0}", i.ToString())">@i</a></li>
+                <li class="page-item"><a class="page-link" title="Page @i.ToString()" href="@urlTemplate.Replace("{0}", i.ToString())">@i</a></li>
             }
         }
         @if (Model.PageIndex != finishIndex)
         {
             <li class="page-item">
-                <a class="page-link" title="@Model.PageCount.ToString()" href="@urlTemplate.Replace("{0}", (Model.PageIndex+1).ToString())">Sau</a>
+                <a class="page-link" title="@Model.PageCount.ToString()" href="@urlTemplate.Replace("{0}", (Model.PageIndex+1).ToString())">NextPage</a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="@urlTemplate.Replace("{0}", Model.PageCount.ToString())">Cuối</a>
+                <a class="page-link" href="@urlTemplate.Replace("{0}", Model.PageCount.ToString())">LastPage</a>
             </li>
         }
     </ul>

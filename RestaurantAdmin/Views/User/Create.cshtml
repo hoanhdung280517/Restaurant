@@ -1,6 +1,7 @@
 ﻿@model RSSolution.ViewModels.System.Users.RegisterRequest
 @{
     ViewData["Title"] = "Create";
+    Layout = null;
 }
 <head>
     <meta charset="UTF-8">
@@ -10,10 +11,13 @@
     <link href="//fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="~/login/css/style.css" type="text/css" media="all" />
+    <link href="~/Admin/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/Admin/css/bootstrap.css" rel='stylesheet' type='text/css' />
+
 </head>
 <body>
     <div class="signinform">
-        <h1> Register</h1>
+        <h1>Create User</h1>
         <!-- container -->
         <div class="containers">
             <!-- main content -->
@@ -47,14 +51,16 @@
                             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                         </div>
                         <div class="form-group">
+                            <label asp-for="District"></label>
                             <select name="DistrictId" asp-items="@ViewBag.District" class="form-control">
                                 <option>--Select District--</option>
-                            </select>                            
+                            </select>
                         </div>
                         <div class="form-group">
+                            <label asp-for="Province"></label>
                             <select name="ProvinceId" asp-items="@ViewBag.Province" class="form-control">
                                 <option>--Select Province--</option>
-                            </select>                           
+                            </select>
                         </div>
                         <div class="form-group">
                             <label asp-for="UserName"></label>
@@ -71,7 +77,11 @@
                             <input asp-for="ConfirmPassword" class="form-control" />
                             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                         </div>
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                        <hr />
+                        <center>
+                            <a class="btn btn-success" asp-action="Index" asp-controller="User">Back to list</a>
+                        </center>
                     </form>
                 </div>
             </div>

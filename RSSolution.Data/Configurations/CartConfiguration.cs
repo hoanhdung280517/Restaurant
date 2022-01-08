@@ -16,6 +16,7 @@ namespace RSSolution.Data.Configurations
             builder.Property(x => x.Id).UseIdentityColumn();
             builder.HasOne(x => x.Meal).WithMany(x => x.Carts).HasForeignKey(x => x.MealId);
             builder.HasOne(x => x.AppUser).WithMany(x => x.Carts).HasForeignKey(x => x.UserId);
+            builder.HasOne(x => x.Table).WithMany(x => x.Carts).HasForeignKey(x => x.TableId);
 
         }
     }

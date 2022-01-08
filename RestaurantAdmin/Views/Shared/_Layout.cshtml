@@ -4,8 +4,7 @@
     <title>@ViewData["Title"]Restaurant System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta name="keywords" content="" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
     <!-- Bootstrap Core CSS -->
@@ -23,9 +22,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <!-- js-->
     <script src="~/Admin/js/jquery-1.11.1.min.js"></script>
     <script src="~/Admin/js/modernizr.custom.js"></script>
-
     <!--webfonts-->
-    <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,700i,800" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Mallanna" rel="stylesheet">
     <!--//webfonts-->
     <!-- Metis Menu -->
     <script src="~/Admin/js/metisMenu.min.js"></script>
@@ -82,13 +81,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 </ul>
                             </li>
                             <li class="treeview">
-                                <a href="charts.html">
-                                    <i class="fa fa-pie-chart"></i>
-                                    <span>Charts</span>
-                                    <span class="label label-primary pull-right">new</span>
-                                </a>
-                            </li>
-                            <li class="treeview">
                             <li class="treeview">
                                 <a href="#">
                                     <i class="fa fa-book"></i>
@@ -101,20 +93,26 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 </ul>
                             </li>
                             <li>
-                                <a asp-area="Admin" asp-controller="Promotions" asp-action="Index">
+                                <a asp-controller="Order" asp-action="Index">
+                                    <i class="fa fa-th"></i> <span>Order</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Promotion" asp-action="Index">
                                     <i class="fa fa-th"></i> <span>Promotions</span>
                                 </a>
                             </li>
-                            <li class="treeview">
-                                <a href="#">
+                            <li>
+                                <a asp-controller="Table" asp-action="Index">
                                     <i class="fa fa-table"></i> <span>Tables</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
                                 </a>
-                                <ul class="treeview-menu">
-                                    <li><a asp-area="" asp-controller="Table" asp-action="Index"><i class="fa fa-angle-right"></i> Tables</a></li>                           
-                                </ul>
-                            </li>                       
-                    </div>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="Contact">
+                                    <i class="fa fa-comment"></i> <span>Contact</span>
+                                </a>
+                            </li>
+</div>
                     <!-- /.navbar-collapse -->
                 </nav>
             </aside>
@@ -130,7 +128,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     @await Component.InvokeAsync("Navigation")
                     <div id="layoutSidenav">
                         <div id="layoutSidenav_nav">
-
                         </div>
                     </div>
                 </div>
@@ -152,11 +149,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                         <ul class="dropdown-menu drp-mnu">
 
                             <li> <a asp-action="Index" asp-controller="Login"><i class="fa fa-user"></i> Login</a> </li>
-                            <li> <a asp-action="Create" asp-controller="User"><i class="fa fa-plus"></i> Register</a> </li>
-                            <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
-                            <li> <a href="#"><i class="fa fa-user"></i> My Account</a> </li>
-                            <li> <a href="#"><i class="fa fa-suitcase"></i> Profile</a> </li>
-                            <li> <a asp-action="Logout" asp-controller="User"><i class="fa fa-sign-out"></i> Logout</a> </li>
+                            <li> <a asp-action="Logout" asp-controller="Login"><i class="fa fa-sign-out"></i> Logout</a> </li>
                         </ul>
                     </li>
                 </ul>

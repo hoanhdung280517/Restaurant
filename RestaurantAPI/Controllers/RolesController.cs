@@ -13,7 +13,6 @@ namespace RestaurantAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class RolesController : ControllerBase
     {
         private readonly IRoleService _roleService;

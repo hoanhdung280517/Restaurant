@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RestaurantAdmin.Controllers
 {
+    [Authorize]
     public class MealController : Controller
     {
         private readonly IMealApiClient _mealApiClient;
@@ -26,7 +28,6 @@ namespace RestaurantAdmin.Controllers
             _mealApiClient = mealApiClient;
             _mealCategoryApiClient = meaCategoryApiClient;
         }
-
         public async Task<IActionResult> Index(string keyword, int? mealCategoryId, int pageIndex = 1, int pageSize = 10)
         {
             var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
@@ -126,7 +127,6 @@ namespace RestaurantAdmin.Controllers
             };
             return View(editVm);
         }
-
         [HttpPost]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Edit([FromForm] MealUpdateRequest request)
@@ -142,6 +142,43 @@ namespace RestaurantAdmin.Controllers
             }
 
             ModelState.AddModelError("", "Update meal failed");
+            return View(request);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Details(int Id)
+        {
+            var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
+            var result = await _mealApiClient.GetById(Id, languageId);
+            return View(result);
+        }
+        [HttpGet]
+        public async Task<IActionResult> EditPrice(int id)
+        {
+            var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
+
+            var meal = await _mealApiClient.GetById(id, languageId);
+            var editPVm = new MealUpdatePriceRequest()
+            {
+                Id = meal.Id,
+                Price = meal.Price,
+            };
+            return View(editPVm);
+        }
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> EditPrice([FromForm] MealUpdatePriceRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(request);
+
+            var result = await _mealApiClient.UpdatePrice(request);
+            if (result)
+            {
+                TempData["result"] = "Update meal price successful";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Update meal price failed");
             return View(request);
         }
 
@@ -189,5 +226,6 @@ namespace RestaurantAdmin.Controllers
             ModelState.AddModelError("", "Delete failed");
             return View(request);
         }
+
     }
 }

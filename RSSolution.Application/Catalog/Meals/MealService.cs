@@ -75,7 +75,8 @@ namespace RSSolution.Application.Catalog.Meals
                         SeoDescription = request.SeoDescription,
                         SeoAlias = request.SeoAlias,
                         SeoTitle = request.SeoTitle,
-                        LanguageId = request.LanguageId
+                        LanguageId = request.LanguageId,
+                        
                     }
                 }
             };
@@ -110,7 +111,7 @@ namespace RSSolution.Application.Catalog.Meals
             {
                 await _storageService.DeleteFileAsync(image.ImagePath);
             }
-
+              
             _context.Meals.Remove(meal);
 
             return await _context.SaveChangesAsync();
@@ -261,6 +262,7 @@ namespace RSSolution.Application.Catalog.Meals
             mealTranslations.Description = request.Description;
             mealTranslations.Details = request.Details;
 
+
             //Save image
             if (request.ThumbnailImage != null)
             {
@@ -291,11 +293,11 @@ namespace RSSolution.Application.Catalog.Meals
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> UpdatePrice(int mealId, decimal newPrice)
+        public async Task<bool> UpdatePrice(MealUpdatePriceRequest request)
         {
-            var meal = await _context.Meals.FindAsync(mealId);
-            if (meal == null) throw new RSException($"Cannot find a product with id: {mealId}");
-            meal.Price = newPrice;
+            var meal = await _context.Meals.FindAsync(request.Id);
+            if (meal == null) throw new RSException($"Cannot find a product with id: {request.Id}");
+            meal.Price = request.Price;
             return await _context.SaveChangesAsync() > 0;
         }
 

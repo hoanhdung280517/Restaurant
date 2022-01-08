@@ -110,7 +110,27 @@ namespace RSSolution.APIHelpers
             var response = await client.PutAsync($"/api/meals/" + request.Id, requestContent);
             return response.IsSuccessStatusCode;
         }
+        public async Task<bool> UpdatePrice(MealUpdatePriceRequest request)
+        {
+            var sessions = _httpContextAccessor
+                .HttpContext
+                .Session
+                .GetString(SystemConstants.AppSettings.Token);
 
+            var languageId = _httpContextAccessor.HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var requestContent = new MultipartFormDataContent();
+            //requestContent.Add(new StringContent(request.Id.ToString()), "id");
+            requestContent.Add(new StringContent(request.Price.ToString()), "price");
+            requestContent.Add(new StringContent(languageId), "languageId");
+
+            var response = await client.PatchAsync($"/api/meals/" + request.Id, requestContent);
+            return response.IsSuccessStatusCode;
+        }
         public async Task<PagedResult<MealVm>> GetPagings(GetManageMealPagingRequest request)
         {
             var data = await GetAsync<PagedResult<MealVm>>(

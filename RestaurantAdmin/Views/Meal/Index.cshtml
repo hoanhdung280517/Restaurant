@@ -13,35 +13,35 @@
         <div class="card mb-12">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-md-10 col-xs-12">
+                    <div class="col-md-12 col-xs-12">
                         <form asp-action="Index" method="get">
                             <div class="row">
                                 <div class="col-md-4">
                                     <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" />
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <select name="mealCategoryId" onchange="this.form.submit()" asp-items="@ViewBag.MealCategories" class="form-control">
                                         <option>--Select Category--</option>
                                     </select>
                                 </div>
-                                <div class="cold-md-3">
+                                <div class="col-md-5" style="text-align:center; position:relative">
                                     <button type="submit" class="btn btn-primary">Search</button>
                                     <button type="button" onclick="window.location.href='/Meal/Index'" class="btn btn-dark">Reset</button>
+                                    <a class="btn btn-success" asp-action="Create" asp-controller="Meal">Create New</a>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-
             <div class="card-body">
                 <div class="row">
                     @if (ViewBag.SuccessMsg != null)
                     {
-        <div id="msgAlert" class="alert alert-success" role="alert">
-            @ViewBag.SuccessMsg
-        </div>}
-                    <a class="btn btn-success" asp-action="Create" asp-controller="Meal">Create New</a>
+                        <div id="msgAlert" class="alert alert-success" role="alert">
+                            @ViewBag.SuccessMsg
+                        </div>
+                    }                    
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -62,23 +62,25 @@
                         <tbody>
                             @foreach (var item in Model.Items)
                             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
-                        @Html.ActionLink("CategoryAssign", "CategoryAssign", new { id = item.Id }) |
-                    </td>
-                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Price) VNĐ
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id ,}) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                                        @Html.ActionLink("CategoryAssign", "CategoryAssign", new { id = item.Id }) |
+                                        @Html.ActionLink("EditPrice", "EditPrice", new { id = item.Id }) 
+
+                                    </td>
+                                </tr>
 }
                         </tbody>
                     </table>

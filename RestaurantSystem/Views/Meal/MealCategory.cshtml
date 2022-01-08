@@ -1,8 +1,8 @@
 ﻿@model MealCategoryViewModel
-
 @{
     ViewData["Title"] = Model.MealCategory.Name + (Model.Meals.PageIndex == 1 ? "" : " - " + _loc["Page"] + " " + Model.Meals.PageIndex);
     ViewData["Description"] = Model.MealCategory.Name + (Model.Meals.PageIndex == 1 ? "" : " - " + _loc["Page"] + " " + Model.Meals.PageIndex);
+    Layout = "_Layout";
     var culture = CultureInfo.CurrentCulture;
 }
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
@@ -22,8 +22,10 @@
     <link rel="apple-touch-icon-precomposed" href="~/themes/images/ico/apple-touch-icon-57-precomposed.png">
     <style type="text/css" id="enject"></style>
 </head>
+<input type="hidden" id="hidTableId" value="@Model.TableId" />
+<input type="hidden" id="hidname" value="@User.Identity.Name" />
 <ul class="breadcrumb">
-    <li><a asp-controller="Home" asp-action="Menu"><localize>Menu</localize></a> <span class="divider">/</span></li>
+    <li><a href='javascript:history.go(-1)'><localize>Menu</localize></a> <span class="divider">/</span></li>
     <li class="active"><localize>Meals</localize></li>
 </ul>
 <h3>@Model.MealCategory.Name</h3>
@@ -49,7 +51,7 @@
             var item = Model.Meals.Items[i];
             <div class="row">
                 <div class="span2">
-                    <a href="/@culture.Name/@_loc["meals"]/@item.Id"><img src="@(Configuration["BaseAddress"] + @item.ThumbnailImage) " alt="@item.Name" /></a>
+                    <a href="/@culture.Name/@_loc["meals"]/@item.Id/@Model.TableId"><img src="@(Configuration["BaseAddress"] + @item.ThumbnailImage) " alt="@item.Name" /></a>
                 </div>
                 <div class="span4">
                     <h3>@item.Name</h3>
@@ -61,7 +63,7 @@
                 </div>
                 <div class="span3 alignR">
                     <form class="form-horizontal qtyFrm">
-                        <h3> @item.Price.ToString("C", culture)</h3>
+                        <h3> @item.Price.ToString("N0", culture) VNĐ</h3>
                         <a class="btn btn-add-cart" data-id="@item.Id" href="#"><localize>Add to</localize> <i class="icon-shopping-cart"></i></a>
                     </form>
                 </div>
@@ -77,7 +79,7 @@
                 var item = Model.Meals.Items[i];
                 <li class="span3">
                     <div class="thumbnail">
-                        <a href="/@culture.Name/@_loc["meals"]/@item.Id"><img src="@(Configuration["BaseAddress"] + @item.ThumbnailImage)" alt="@item.Name" /></a>
+                        <a href="/@culture.Name/@_loc["meals"]/@item.Id/@Model.TableId"><img src="@(Configuration["BaseAddress"] + @item.ThumbnailImage)" alt="@item.Name" /></a>
                         <div class="caption">
                             <h5>@item.Name</h5>
                             <p>
@@ -85,7 +87,7 @@
                             </p>
                             <h4 style="text-align:center">
                                 <a class="btn btn-add-cart" data-id="@item.Id" href="#"><localize>Add to</localize> <i class="icon-shopping-cart"></i></a>
-                                <a class="btn btn-primary" href="#">@item.Price.ToString("C", culture)</a>
+                                <a class="btn btn-primary" href="#">@item.Price.ToString("N0", culture) VNĐ</a>
                             </h4>
                         </div>
                     </div>

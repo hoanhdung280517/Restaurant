@@ -12,7 +12,6 @@ namespace RestaurantAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class MealCategoriesController : ControllerBase
     {
         private readonly IMealCategoryService _mealCategoryService;
@@ -40,7 +39,6 @@ namespace RestaurantAPI.Controllers
         }
         [HttpPost]
         [Consumes("multipart/form-data")]
-        [Authorize]
         public async Task<IActionResult> CreateMealCategory([FromForm] MealCategoryCreateRequest request)
         {
             if (!ModelState.IsValid)
@@ -57,7 +55,6 @@ namespace RestaurantAPI.Controllers
         }
         [HttpPut("{mealCategoryId}")]
         [Consumes("multipart/form-data")]
-        [Authorize]
         public async Task<IActionResult> UpdateMealCategory([FromRoute] int mealCategoryId, [FromForm] MealCategoryUpdateRequest request)
         {
             if (!ModelState.IsValid)
@@ -71,7 +68,6 @@ namespace RestaurantAPI.Controllers
             return Ok();
         }
         [HttpDelete("{mealCategoryId}")]
-        [Authorize]
         public async Task<IActionResult> DeleteMealCategory(int mealCategoryId)
         {
             var affectedResult = await _mealCategoryService.DeleteMealCategory(mealCategoryId);

@@ -9,7 +9,6 @@ namespace RestaurantAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -35,6 +34,13 @@ namespace RestaurantAPI.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetAll()
+        {
+            var user = await _userService.GetAll();
+            return Ok(user);
+        }
         [HttpPost("register")]
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody]RegisterRequest request)
@@ -49,8 +55,6 @@ namespace RestaurantAPI.Controllers
             }
             return Ok(result);
         }
-
-        //PUT: http://localhost/api/users/id
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody]UserUpdateRequest request)
         {
@@ -79,7 +83,6 @@ namespace RestaurantAPI.Controllers
             return Ok(result);
         }
 
-        //http://localhost/api/users/paging?pageIndex=1&pageSize=10&keyword=
         [HttpGet("paging")]
         public async Task<IActionResult> GetAllPaging([FromQuery]GetUserPagingRequest request)
         {
@@ -87,10 +90,17 @@ namespace RestaurantAPI.Controllers
             return Ok(products);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("id/{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
             var user = await _userService.GetById(id);
+            return Ok(user);
+        }
+        
+        [HttpGet("user")]
+        public async Task<IActionResult> GetByUserName(string username)
+        {
+            var user = await _userService.GetByUserName(username);
             return Ok(user);
         }
 

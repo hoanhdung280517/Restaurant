@@ -1,0 +1,39 @@
+﻿@model RSSolution.ViewModels.Catalog.Meals.MealUpdatePriceRequest
+
+@{ ViewData["Title"] = "Update Meal";
+    Layout = "_Layout"; }
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/21.0.0/classic/ckeditor.js"></script>
+    <script>ClassicEditor
+            .create(document.querySelector('#txt_details'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });</script>
+}
+<div id="page-wrapper">
+    <div class="main-page">
+        <center> <h1 class="mt-4">Update Meal Price</h1></center><hr />
+        <div class="grid-bottom widget-shadow">
+            <form asp-action="EditPrice" enctype="multipart/form-data" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>               
+                <center>
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                        <a class="btn btn-success" asp-action="Index" asp-controller="Meal">Back to list</a>
+                    </div>
+                </center>
+            </form>
+        </div>
+    </div>
+</div>

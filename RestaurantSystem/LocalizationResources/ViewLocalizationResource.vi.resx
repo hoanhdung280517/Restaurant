@@ -157,6 +157,10 @@
     <value>Dịch vụ giao hàng tận nơi</value>
     <comment>Index</comment>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Mô tả</value>
+    <comment>Cart/Index</comment>
+  </data>
   <data name="Eating is love - criticism does not count" xml:space="preserve">
     <value>Ăn là mê – chê không tính tiền</value>
     <comment>Layouts</comment>
@@ -188,6 +192,10 @@
   <data name="Love is to say, hunger is to eat" xml:space="preserve">
     <value>Yêu là phải nói, đói là phải ăn</value>
     <comment>Layouts</comment>
+  </data>
+  <data name="Meal" xml:space="preserve">
+    <value>Món ăn </value>
+    <comment>Cart/Index</comment>
   </data>
   <data name="Meal Details" xml:space="preserve">
     <value>Mô tả món ăn</value>
@@ -233,6 +241,14 @@
     <value>Số điện thoại</value>
     <comment>Layouts</comment>
   </data>
+  <data name="Price" xml:space="preserve">
+    <value>Giá</value>
+    <comment>Price</comment>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Số lượng</value>
+    <comment>Cart/Index</comment>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Đăng kí</value>
     <comment>Layouts</comment>
@@ -264,6 +280,10 @@
   <data name="Today Special" xml:space="preserve">
     <value>Các món đặt biệt ngày hôm nay</value>
     <comment>Index</comment>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Tổng cộng</value>
+    <comment>Cart/Index</comment>
   </data>
   <data name="View Details" xml:space="preserve">
     <value>Xem chi tiết</value>

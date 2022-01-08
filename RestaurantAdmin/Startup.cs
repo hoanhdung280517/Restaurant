@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RSSolution.APIHelpers;
+using RSSolution.APIHelppers;
 using RSSolution.ViewModels.System.Users;
 using System;
 using System.Collections.Generic;
@@ -53,8 +54,11 @@ namespace RestaurantAdmin
             services.AddTransient<IMealCategoryApiClient, MealCategoryApiClient>();
             services.AddTransient<IPDApiClient, PDApiClient>();
             services.AddTransient<ITableApiClient, TableApiClient>();
-
-
+            services.AddTransient<IContactApiClient, ContactApiClient>();
+            services.AddTransient<IOrderApiClient, OrderApiClient>();
+            services.AddTransient<IBookTableApiClient, BookTableApiClient>();
+            services.AddTransient<IPromotionApiClient, PromotionApiClient>();
+            services.AddTransient<IBookTableApiClient, BookTableApiClient>();
             IMvcBuilder builder = services.AddRazorPages();
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
@@ -90,7 +94,7 @@ namespace RestaurantAdmin
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }

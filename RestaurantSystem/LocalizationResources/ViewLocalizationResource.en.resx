@@ -157,6 +157,10 @@
     <value>Delivery service</value>
     <comment>Index</comment>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>Cart/Index</comment>
+  </data>
   <data name="Eating is love - criticism does not count" xml:space="preserve">
     <value>Eating is love - criticism does not count</value>
     <comment>Layouts</comment>
@@ -188,6 +192,10 @@
   <data name="Love is to say, hunger is to eat" xml:space="preserve">
     <value>Love is to say, hunger is to eat</value>
     <comment>Layouts</comment>
+  </data>
+  <data name="Meal" xml:space="preserve">
+    <value>Meal</value>
+    <comment>Cart/Index</comment>
   </data>
   <data name="Meal Details" xml:space="preserve">
     <value>Meal Details</value>
@@ -233,6 +241,14 @@
     <value>Phone</value>
     <comment>Layouts</comment>
   </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+    <comment>Cart/Index</comment>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
+    <comment>Cart/Index</comment>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
     <comment>Layouts</comment>
@@ -264,6 +280,10 @@
   <data name="Today Special" xml:space="preserve">
     <value>Today Special</value>
     <comment>Index</comment>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+    <comment>Cart/Index</comment>
   </data>
   <data name="View Details" xml:space="preserve">
     <value>View Details</value>

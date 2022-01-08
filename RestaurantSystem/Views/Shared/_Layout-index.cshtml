@@ -1,13 +1,7 @@
-﻿<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Royal Recipes a Hotels and restaurants Category Flat Bootstrap responsive Website Template | Home :: w3layouts</title>
+    <title>Restaurant System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Royal Recipes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -89,15 +83,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </li>
                             <li class="nav">
                                 <form class="sign" asp-controller="Account" asp-action="Logout">
-                                    <button type="submit" class="btn btn-block me-md-2">Logout</button>
+                                    <button type="submit" class="btn btn-block me-md-2"><localize>Logout</localize></button>
                                 </form>
                             </li>
                         }
                         else
                         {
                             <li class="nav">
-                                <a asp-area="" asp-controller="Account" asp-action="Login">Login|</a>
-                                <a asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                                <a asp-area="" asp-controller="Account" asp-action="Login"><localize>Login</localize>|</a>
+                                <a asp-area="" asp-controller="Account" asp-action="Register"><localize>Register</localize></a>
                             </li>
                         }
                     </ul>
@@ -135,7 +129,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     }
                                     if (User.IsInRole("User"))
                                     {
-                                        <li><a asp-area="" asp-controller="Home" asp-action="Menu">Menu</a></li>
+                                        <li><a asp-area="" asp-controller="Home" asp-action="Table">Table</a></li>
+                                        <li><a asp-area="" asp-controller="BookTable" asp-action="Create">Book a Table</a></li>
+                                    }
+                                    if (User.IsInRole("Manager"))
+                                    {
+                                        <li><a asp-area="" asp-controller="Order" asp-action="Table">Checkout</a></li>
+                                        <li><a asp-area="" asp-controller="BookTable" asp-action="Index">Book a Table</a></li>
                                     }
                                 }
                                 <li><a asp-area="" asp-controller="Home" asp-action="Contact"><localize>Contact</localize></a></li>
@@ -267,23 +267,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!-- //footer -->
-    <script src="js/owl.carousel.js"></script>
-    <script type="text/javascript" src="js/move-top.js"></script>
-    <script type="text/javascript" src="js/easing.js"></script>
+    <script src="~/js/owl.carousel.js"></script>
+    <script type="text/javascript" src="~/js/move-top.js"></script>
+    <script type="text/javascript" src="~/js/easing.js"></script>
     <!-- here stars scrolling icon -->
     <script type="text/javascript">
         $(document).ready(function () {
-            /*
-                var defaults = {
-                containerID: 'toTop', // fading element id
-                containerHoverID: 'toTopHover', // fading element hover id
-                scrollSpeed: 1200,
-                easingType: 'linear'
-                };
-            */
-
             $().UItoTop({ easingType: 'easeOutQuart' });
-
         });
     </script>
     <!-- //here ends scrolling icon -->

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RSSolution.Application.Catalog.Tables;
@@ -10,9 +11,10 @@ using System.Threading.Tasks;
 
 namespace RestaurantAPI.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    
     public class TableController : ControllerBase
     {
        private readonly ITableService _tableService;
@@ -39,7 +41,6 @@ namespace RestaurantAPI.Controllers
         }
         [HttpPost]
         [Consumes("multipart/form-data")]
-        [Authorize]
         public async Task<IActionResult> CreateTabel([FromForm] TableCreateRequest request)
         {
             if (!ModelState.IsValid)
@@ -54,7 +55,6 @@ namespace RestaurantAPI.Controllers
         }
         [HttpPut("{tableId}")]
         [Consumes("multipart/form-data")]
-        [Authorize]
         public async Task<IActionResult> UpdateTable([FromRoute] int tableId,[FromForm] TableUpdateRequest request)
         {
             if (!ModelState.IsValid)
@@ -68,7 +68,6 @@ namespace RestaurantAPI.Controllers
             return Ok(result);
         }
         [HttpDelete("{tableid}")]
-        [Authorize]
         public async Task<IActionResult> DeleteMealCategory(int tableid)
         {
             var affectedResult = await _tableService.Delete(tableid);

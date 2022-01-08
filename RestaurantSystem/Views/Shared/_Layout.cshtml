@@ -1,9 +1,11 @@
-﻿@{ var culture = CultureInfo.CurrentCulture.Name; }
+﻿@{ 
+    var culture = CultureInfo.CurrentCulture.Name;
+ }
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Royal Recipes a Hotels and restaurants Category Flat Bootstrap responsive Website Template | Home :: w3layouts</title>
+    <title>Restaurant System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Royal Recipes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -45,6 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
     <input type="hidden" id="hidCulture" value="@culture" />
     <input type="hidden" id="hidBaseAddress" value="@Configuration["BaseAddress"]" />
+    <input type="hidden" id="hidTableId" value="@Model.TableId" />
     <div class="w3layouts-banner-top">
     </div>
     <!-- banner -->
@@ -59,9 +62,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </language-nav>
                         </li>
                         <li>
-                            <a asp-action="Index" asp-controller="Cart">
+                            <a href="/@culture/Cart/Index/@Model.TableId">
                                 <span class="btn btn-mini btn-primary">
-                                    <i class="icon-shopping-cart icon-white"></i> [ <span id="lbl_number_items_header">0</span> ] Itemes in your cart
+                                    <i class="icon-shopping-cart icon-white"></i> [ <span id="lbl_number_items_header">0</span>] Itemes in your cart
                                 </span>
                             </a>
                         </li>
@@ -71,27 +74,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul>
                         @if (User.Identity.Name != null)
                         {
-            <li class="nav" style="padding-top:8px">
-                <a class="sign" title="Manage">@User.Identity.Name!</a>
-            </li>
+                            <li class="nav" style="padding-top:8px">
+                                <a class="sign" title="Manage">@User.Identity.Name!</a>
+                            </li>
                             <li class="nav" style="padding-top:8px">
                                 <a>|</a>
                             </li>
-                                            <li class="nav">
-                                                <form class="sign" asp-controller="Account" asp-action="Logout">
-                                                    <button type="submit" class="btn btn-block me-md-2">Logout</button>
-                                                </form>
-                                            </li>
- }
-                                        else
-                                        {
                             <li class="nav">
-                                <a asp-area="" asp-controller="Account" asp-action="Login"><localize>Login</localize>|</a>
-                                <a asp-area="" asp-controller="Account" asp-action="Create"><localize>Register</localize></a>
-                            </li>
-}
-
-
+                                <form class="sign" asp-controller="Account" asp-action="Logout">
+                                     <button type="submit" class="btn btn-block me-md-2">Logout</button>
+                                </form>
+                             </li> 
+                        }
+                        else
+                        {
+                             <li class="nav">
+                                  <a asp-area="" asp-controller="Account" asp-action="Login"><localize>Login</localize>|</a>
+                                  <a asp-area="" asp-controller="Account" asp-action="Create"><localize>Register</localize></a>
+                             </li>
+                        }
                     </ul>
                 </div>
                 <div class="clearfix"> </div>
@@ -123,14 +124,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             <ul class="dropdown-menu">
                                                 <li> @Html.ActionLink("Manage System", "Index", "User")</li>
                                             </ul>
-                                        </li>
+                                        </li> 
                                     }
                                     if (User.IsInRole("User"))
                                     {
-                                        <li><a asp-area="" asp-controller="Home" asp-action="Menu">Menu</a></li>
+                                        <li><a asp-area="" asp-controller="Home" asp-action="Table">Table</a></li> 
+                                        <li><a asp-area="" asp-controller="BookTable" asp-action="Create">Book a Table</a></li>
                                     }
-                                 }
-                             <li><a asp-area="" asp-controller="Home" asp-action="Contact"><localize>Contact</localize></a></li>
+                                    if (User.IsInRole("Manager"))
+                                    {
+                                        <li><a asp-area="" asp-controller="Order" asp-action="Table">Table</a></li>
+                                        <li><a asp-area="" asp-controller="BookTable" asp-action="Index">Book a Table</a></li>
+                                    }
+                                }
+                                <li><a asp-area="" asp-controller="Home" asp-action="Contact"><localize>Contact</localize></a></li>
                             </ul>
                             <div class="clearfix"> </div>
                         </div>
@@ -146,7 +153,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <div class="row">
                 <!-- Sidebar ================================================== -->
-                @await Component.InvokeAsync("SideBar")
+                @await Component.InvokeAsync("SideBar", new {tableId = @Model.TableId })
                 <!-- Sidebar end=============================================== -->
                 <div class="span9">
                     @RenderBody()
@@ -222,28 +229,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- here stars scrolling icon -->
     <script type="text/javascript">
         $(document).ready(function () {
-            /*
-                var defaults = {
-                containerID: 'toTop', // fading element id
-                containerHoverID: 'toTopHover', // fading element hover id
-                scrollSpeed: 1200,
-                easingType: 'linear'
-                };
-            */
-
             $().UItoTop({ easingType: 'easeOutQuart' });
 
         });
     </script>
     <!-- //here ends scrolling icon -->
-    <script type="text/javascript">
-        /* init Jarallax */
-        $('.jarallax').jarallax({
-            speed: 0.5,
-            imgWidth: 1366,
-            imgHeight: 768
-        })
-    </script>
     @await RenderSectionAsync("Scripts", required: false)
     <script src="~/js/site.js"></script>
     <script src="~/js/owl.carousel.js"></script>

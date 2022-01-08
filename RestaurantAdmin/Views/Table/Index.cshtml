@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<RSSolution.ViewModels.Catalog.Table.TableVm>
 @{
-    ViewData["Title"] = "GetAll Meal Categories";
+    ViewData["Title"] = "GetAll Table";
     Layout = "_Layout";
 }
 @section Scripts{
@@ -13,12 +13,14 @@
         <center><h3 class="title1">Table</h3></center>
         <div class="grid-bottom widget-shadow">
             <a class="btn btn-success" asp-action="Create" asp-controller="Table">Create New</a><hr />
-            @if (ViewBag.SuccessMsg != null)
-            {
-                <div id="msgAlert" class="alert alert-success" role="alert">
-                        @ViewBag.SuccessMsg
-                 </div>
-             }
+            <div class="row">
+                @if (ViewBag.Success != null)
+                {
+                    <div  id="msgAlert" class="alert alert-danger" role="alert" style="text-align:center;width: 380px; margin-left: auto; margin-right: auto;" >
+                        <h4 style="font-family:'Pacifico', cursive">@ViewBag.Success</h4>
+                    </div>
+                 }
+            </div>
             <table class="table table-bordered table-striped no-margin grd_tble">
                 <thead>
                     <tr>
@@ -34,20 +36,21 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
 
-            <td>
+                            <td>
 
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>}
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
             <hr />

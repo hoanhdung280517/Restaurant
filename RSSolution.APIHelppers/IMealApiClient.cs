@@ -15,6 +15,7 @@ namespace RSSolution.APIHelpers
         Task<bool> CreateMeal(MealCreateRequest request);
 
         Task<bool> UpdateMeal(MealUpdateRequest request);
+        Task<bool> UpdatePrice(MealUpdatePriceRequest request);
 
         Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
 

@@ -1,6 +1,7 @@
 ﻿using RSSolution.ViewModels.Catalog.MealCategories;
 using RSSolution.ViewModels.Catalog.MealImages;
 using RSSolution.ViewModels.Catalog.Meals;
+using RSSolution.ViewModels.Comments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace RestaurantSystem.Models
 {
     public class MealDetailViewModel
     {
+        public int TableId { get; set; }
         public MealCategoryVm MealCategory { get; set; }
 
         public MealVm Meal { get; set; }

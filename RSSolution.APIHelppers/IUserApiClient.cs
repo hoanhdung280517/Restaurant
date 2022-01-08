@@ -9,6 +9,7 @@ namespace RSSolution.APIHelpers
 {
     public interface IUserApiClient
     {
+        Task<List<UserVm>> GetAll();
         Task<ApiResult<string>> Authenticate(LoginRequest request);
 
         Task<ApiResult<PagedResult<UserVm>>> GetUsersPagings(GetUserPagingRequest request);

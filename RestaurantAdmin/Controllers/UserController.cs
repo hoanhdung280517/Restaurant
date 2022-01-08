@@ -16,9 +16,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RestaurantAdmin.Controllers
 {
+    [Authorize]
     public class UserController : BaseController
     {
         private readonly IUserApiClient _userApiClient;
@@ -57,7 +59,7 @@ namespace RestaurantAdmin.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(Guid id)
         {
-            var result = await _userApiClient.GetById(id);
+            var result = await _userApiClient.GetById(id);           
             return View(result.ResultObj);
         }
 
@@ -149,14 +151,7 @@ namespace RestaurantAdmin.Controllers
 
             ModelState.AddModelError("", result.Message);
             return View(request);
-        }
-          
-        public async Task<IActionResult> Logout()
-        {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            HttpContext.Session.Remove("Token");
-            return RedirectToAction("Index", "Home");
-        }
+        }         
 
         [HttpGet]
         public IActionResult Delete(Guid id)

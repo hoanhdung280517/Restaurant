@@ -11,10 +11,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using RSSolution.Application.Catalog.BookTables;
+using RSSolution.Application.Catalog.Carts;
+using RSSolution.Application.Catalog.Contacts;
 using RSSolution.Application.Catalog.MealCategories;
 using RSSolution.Application.Catalog.Meals;
+using RSSolution.Application.Catalog.Orders;
+using RSSolution.Application.Catalog.Promotions;
 using RSSolution.Application.Catalog.Tables;
 using RSSolution.Application.Common;
+using RSSolution.Application.System.Comments;
 using RSSolution.Application.System.Languages;
 using RSSolution.Application.System.Roles;
 using RSSolution.Application.System.Users;
@@ -26,22 +32,35 @@ using RSSolution.ViewModels.System.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace RestaurantAPI
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:51037")
+                                                                    .AllowAnyHeader()
+                                                                    .AllowAnyMethod(); 
+                                  });
+            });
             services.AddDbContext<RSDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
 
@@ -50,22 +69,25 @@ namespace RestaurantAPI
                 .AddDefaultTokenProviders();
 
             services.AddTransient<IStorageService, FileStorageService>();
-
             services.AddTransient<IMealService, MealService>();
             services.AddTransient<IMealCategoryService, MealCategoryService>();
-
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
             services.AddTransient<ILanguageService, LanguageService>();
             services.AddTransient<ISlideService, SlideService>();
-
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IPDService, PDService>();
             services.AddTransient<ITableService, TableService>();
+            services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IContactService, ContactService>();
+            services.AddTransient<IBookTableService, BookTableService>();
+            services.AddTransient<IPromotionService, PromotionService>();
             services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
             services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
+            services.AddTransient<ICommentService, CommentService>();
 
             services.AddControllers()
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
@@ -144,6 +166,7 @@ namespace RestaurantAPI
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();

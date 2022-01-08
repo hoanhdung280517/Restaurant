@@ -6,7 +6,7 @@
 }
 <div id="page-wrapper">
     <div class="main-page">
-        <center><h3 class="title1">Edit Table</h3></center>
+        <center><h3 class="title1">Edit User</h3></center>
         <div class="grid-bottom widget-shadow">
             <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -48,6 +48,7 @@
                 <hr />
                 <center>
                     <div class="edu_button">
+                        <a asp-area="" asp-controller="User" asp-action="Index" class="btn btn-primary">Back to list</a>
                         <input type="submit" value="Submit" class="btn btn-primary" />
                     </div>
                 </center>

@@ -1,7 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Contact";
-    Layout = "_Layout-Page";
-}
+﻿@model ContactViewModel
+@{ ViewData["Title"] = "Contact";
+    Layout = "_Layout-Page"; }
+@{ var culture = CultureInfo.CurrentCulture.Name; }
+
 <!-- contact -->
 <div class="contact">
     <div class="container">
@@ -9,12 +10,20 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d18773.47024652013!2d106.616716271683!3d10.86912989860031!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1619335529299!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen=""></iframe>
         </div>
         <div class="contact-form">
+            <div class="row">
+                @if (ViewBag.Success != null)
+                {
+                    <div id="msgAlert" class="alert alert-danger" role="alert" style="text-align:center;width: 380px; margin-left: auto; margin-right: auto;" >
+                        <h4 style="font-family:'Pacifico', cursive">@ViewBag.Success</h4>
+                    </div>
+                 }
+            </div>
             <h3>Contact form</h3>
-            <form action="#" method="post">
-                <input type="text" name="Name" placeholder="Name" required="">
-                <input type="text" name="Email" placeholder="Email" required="">
-                <input type="text" name="Subject" placeholder="Subject" required="">
-                <textarea name="Message" placeholder="Message" required=""></textarea>
+            <form action="/@culture/Home/Contact" method="post">
+                <input type="text" id="UserName" name="UserName" asp-for="@Model.UserName" placeholder="Name" required="">
+                <input type="text" id="Email" name="Email" asp-for="@Model.Email" placeholder="Email" required="">
+                <input type="text" id="PhoneNumber" name="PhoneNumber" placeholder="PhoneNumber" required="">
+                <textarea id="Message" name="Message" placeholder="Your Comments" required=""></textarea>
                 <input type="submit" value="Send">
             </form>
         </div>
@@ -141,3 +150,6 @@
     </div>
 </div>
 <!-- //contact -->
+<script>setTimeout(function () {
+            $('#msgAlert').fadeOut('slow');
+    }, 2000);</script>

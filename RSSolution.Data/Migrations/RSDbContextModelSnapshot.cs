@@ -180,7 +180,7 @@ namespace RSSolution.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "a3fdd4d8-04f4-4d26-b832-5cba98d8b5ba",
+                            ConcurrencyStamp = "9ce567e7-a4f3-49d7-a140-fa413ba3397a",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -267,7 +267,7 @@ namespace RSSolution.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "02c8678e-cc64-48cf-9336-f908841f7905",
+                            ConcurrencyStamp = "63d20332-c2b8-4615-9692-dde8195c6580",
                             DistrictId = 1,
                             Dob = new DateTime(2000, 9, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "hoanhdung280517@gmail.com",
@@ -277,13 +277,49 @@ namespace RSSolution.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "hoanhdung280517@gmail.com",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPqFF0Mm3fx3nTekF1j7QUZiiDqVAGwZH1cjn22vjadXOi6wsJpWAIzyVQjc+2Jitw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBV/YcTb35uijTIs+TxMWIM530W6PB/4sO9536dEt7K6u2Bw2RhhgZwku7vz1Fm1Qw==",
                             PhoneNumberConfirmed = false,
                             ProvinceId = 1,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
+                });
+
+            modelBuilder.Entity("RSSolution.Data.Entities.BookTable", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("BookDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CountAdults")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CountChilds")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BookTables");
                 });
 
             modelBuilder.Entity("RSSolution.Data.Entities.Cart", b =>
@@ -307,6 +343,9 @@ namespace RSSolution.Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int>("TableId")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -314,9 +353,39 @@ namespace RSSolution.Data.Migrations
 
                     b.HasIndex("MealId");
 
+                    b.HasIndex("TableId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("RSSolution.Data.Entities.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Comments")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("mealId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("mealId");
+
+                    b.ToTable("Comment");
                 });
 
             modelBuilder.Entity("RSSolution.Data.Entities.Contact", b =>
@@ -327,6 +396,9 @@ namespace RSSolution.Data.Migrations
                         .HasAnnotation("SqlServer:IdentityIncrement", 1)
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("ContactDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -342,12 +414,8 @@ namespace RSSolution.Data.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
+                    b.Property<int>("PhoneNumber")
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -442,7 +510,7 @@ namespace RSSolution.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2021, 6, 25, 10, 34, 53, 404, DateTimeKind.Local).AddTicks(9732),
+                            DateCreated = new DateTime(2021, 10, 1, 14, 10, 57, 539, DateTimeKind.Local).AddTicks(3465),
                             Price = 200000m,
                             ViewCount = 0
                         });
@@ -729,29 +797,13 @@ namespace RSSolution.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ShipAddress")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("ShipEmail")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("ShipName")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("ShipPhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                    b.Property<int>("PromotionId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(2);
 
                     b.Property<int>("TableId")
                         .HasColumnType("int");
@@ -760,8 +812,6 @@ namespace RSSolution.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TableId");
 
                     b.HasIndex("UserId");
 
@@ -782,6 +832,9 @@ namespace RSSolution.Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int>("TableId")
+                        .HasColumnType("int");
+
                     b.HasKey("OrderId", "MealId");
 
                     b.HasIndex("MealId");
@@ -789,7 +842,7 @@ namespace RSSolution.Data.Migrations
                     b.ToTable("OrderDetails");
                 });
 
-            modelBuilder.Entity("RSSolution.Data.Entities.Promotion", b =>
+            modelBuilder.Entity("RSSolution.Data.Entities.Promotions", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -798,27 +851,15 @@ namespace RSSolution.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("ApplyForAll")
-                        .HasColumnType("bit");
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("DiscountAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("DiscountPercent")
+                    b.Property<int>("DiscountPercent")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("FromDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductCategoryIds")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductIds")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -1035,11 +1076,28 @@ namespace RSSolution.Data.Migrations
                     b.Navigation("Province");
                 });
 
+            modelBuilder.Entity("RSSolution.Data.Entities.BookTable", b =>
+                {
+                    b.HasOne("RSSolution.Data.Entities.AppUser", "User")
+                        .WithMany("bookTables")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("RSSolution.Data.Entities.Cart", b =>
                 {
                     b.HasOne("RSSolution.Data.Entities.Meal", "Meal")
                         .WithMany("Carts")
                         .HasForeignKey("MealId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RSSolution.Data.Entities.Table", "Table")
+                        .WithMany("Carts")
+                        .HasForeignKey("TableId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1052,6 +1110,19 @@ namespace RSSolution.Data.Migrations
                     b.Navigation("AppUser");
 
                     b.Navigation("Meal");
+
+                    b.Navigation("Table");
+                });
+
+            modelBuilder.Entity("RSSolution.Data.Entities.Comment", b =>
+                {
+                    b.HasOne("RSSolution.Data.Entities.Meal", "meal")
+                        .WithMany("comments")
+                        .HasForeignKey("mealId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("meal");
                 });
 
             modelBuilder.Entity("RSSolution.Data.Entities.MealCategoryTranslation", b =>
@@ -1124,12 +1195,6 @@ namespace RSSolution.Data.Migrations
 
             modelBuilder.Entity("RSSolution.Data.Entities.Order", b =>
                 {
-                    b.HasOne("RSSolution.Data.Entities.Table", "Table")
-                        .WithMany("Orders")
-                        .HasForeignKey("TableId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("RSSolution.Data.Entities.AppUser", "AppUser")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
@@ -1137,8 +1202,6 @@ namespace RSSolution.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("AppUser");
-
-                    b.Navigation("Table");
                 });
 
             modelBuilder.Entity("RSSolution.Data.Entities.OrderDetail", b =>
@@ -1173,6 +1236,8 @@ namespace RSSolution.Data.Migrations
 
             modelBuilder.Entity("RSSolution.Data.Entities.AppUser", b =>
                 {
+                    b.Navigation("bookTables");
+
                     b.Navigation("Carts");
 
                     b.Navigation("Orders");
@@ -1195,6 +1260,8 @@ namespace RSSolution.Data.Migrations
             modelBuilder.Entity("RSSolution.Data.Entities.Meal", b =>
                 {
                     b.Navigation("Carts");
+
+                    b.Navigation("comments");
 
                     b.Navigation("MealImages");
 
@@ -1224,7 +1291,7 @@ namespace RSSolution.Data.Migrations
 
             modelBuilder.Entity("RSSolution.Data.Entities.Table", b =>
                 {
-                    b.Navigation("Orders");
+                    b.Navigation("Carts");
                 });
 #pragma warning restore 612, 618
         }

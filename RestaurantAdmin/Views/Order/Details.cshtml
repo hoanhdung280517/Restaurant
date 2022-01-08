@@ -1,0 +1,63 @@
+﻿@model OrderDetailsVM
+@using RSSolution.ViewModels.Sales
+@{ 
+    ViewData["Title"] = "Details";
+    Layout = "_Layout"; 
+}
+<div id="page-wrapper">
+    <div class="main-page">
+        <center><h3 class="title1">OrderDetails</h3></center>
+        <div class="grid-bottom widget-shadow">
+            <table class="table table-bordered table-striped no-margin grd_tble">
+                <thead>
+                    <tr>
+                        <th><localize>MealId</localize></th>
+                        <th><localize>Meal</localize></th>
+                        <th><localize>Description</localize></th>
+                        <th><localize>Quantity</localize></th>
+                        <th><localize>Price</localize></th>
+                        <th><localize>Total</localize></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.orderdetails)
+                    {
+                        <tr>
+                            <td>@item.MealId</td>
+                            <td>@item.MealName</td>
+                            <td>@item.Description</td>
+                            <td>
+                                @item.Quantity
+                            </td>
+                            <td>@item.Price.ToString("N0")</td>
+                            <td>@((item.Quantity * item.Price).ToString("N0")) VND</td>
+                        </tr>
+                    }
+                    <tr>
+                        <td colspan="5" style="text-align:right"><strong>DiscountPercent =</strong></td>
+                        <td>@Model.DiscountPercent %</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" style="text-align:right"><strong>TOTAL =</strong></td>
+                        @if(Model.DiscountPercent == 0) 
+                        { 
+                            <td> @Model.orderdetails.Sum(x => x.Quantity * x.Price).ToString("N0") VND</td>
+                        }
+                        else
+                        {
+                            int discount =100 - Model.DiscountPercent;                          
+                            <td> @Model.orderdetails.Sum(x => ((x.Quantity * x.Price)*(discount))/100).ToString("N0") VND</td>
+                        }                                             
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <center>
+                <div class="form-group">
+                    <a class="btn btn-success" asp-action="Index" asp-controller="Order">Back to order</a>
+                </div>
+            </center>
+        </div>
+    </div>
+</div>
+

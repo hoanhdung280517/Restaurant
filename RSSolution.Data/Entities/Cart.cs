@@ -10,7 +10,8 @@ namespace RSSolution.Data.Entities
         public int MealId { set; get; }
         public int Quantity { set; get; }
         public decimal Price { set; get; }
-
+        public int TableId { get; set; }
+        public Table Table { get; set; }
         public Guid UserId { get; set; }
 
         public Meal Meal { get; set; }

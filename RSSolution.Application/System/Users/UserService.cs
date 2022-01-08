@@ -12,6 +12,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using RSSolution.Data.EF;
+using System.Collections.Generic;
 
 namespace RSSolution.Application.System.Users
 {
@@ -21,16 +23,19 @@ namespace RSSolution.Application.System.Users
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<AppRole> _roleManager;
         private readonly IConfiguration _config;
+        private readonly RSDbContext _context;
 
         public UserService(UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
             RoleManager<AppRole> roleManager,
-            IConfiguration config)
+            IConfiguration config,
+            RSDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _config = config;
+            _context = context;
         }
 
         public async Task<ApiResult<string>> Authencate(LoginRequest request)
@@ -85,6 +90,8 @@ namespace RSSolution.Application.System.Users
                 return new ApiErrorResult<UserVm>("User isn't exists");
             }
             var roles = await _userManager.GetRolesAsync(user);
+            var district = _context.Districts.FirstOrDefault(d=>d.Id == user.DistrictId);
+            var province = _context.Provinces.FirstOrDefault(d => d.Id == user.ProvinceId);
             var userVm = new UserVm()
             {
                 Email = user.Email,
@@ -95,12 +102,42 @@ namespace RSSolution.Application.System.Users
                 LastName = user.LastName,
                 UserName = user.UserName,
                 DistrictId = user.DistrictId,
+                District = district.Name,
                 ProvinceId = user.ProvinceId,
+                Province = province.Name,
                 Roles = roles
             };
             return new ApiSuccessResult<UserVm>(userVm);
         }
-
+        public async Task<ApiResult<UserVm>> GetByUserName(string username)
+        {
+            var userid = _context.Users.FirstOrDefault(u => u.UserName == username);
+            var id = userid.Id;
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                return new ApiErrorResult<UserVm>("User isn't exists");
+            }
+            var roles = await _userManager.GetRolesAsync(user);
+            var district = _context.Districts.FirstOrDefault(d => d.Id == user.DistrictId);
+            var province = _context.Provinces.FirstOrDefault(d => d.Id == user.ProvinceId);
+            var userVm = new UserVm()
+            {
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                FirstName = user.FirstName,
+                Dob = user.Dob,
+                Id = user.Id,
+                LastName = user.LastName,
+                UserName = user.UserName,
+                DistrictId = user.DistrictId,
+                District = district.Name,
+                ProvinceId = user.ProvinceId,
+                Province = province.Name,
+                Roles = roles
+            };
+            return new ApiSuccessResult<UserVm>(userVm);
+        }
         public async Task<ApiResult<PagedResult<UserVm>>> GetUsersPaging(GetUserPagingRequest request)
         {
             var query = _userManager.Users;
@@ -219,6 +256,23 @@ namespace RSSolution.Application.System.Users
                 return new ApiSuccessResult<bool>();
             }
             return new ApiErrorResult<bool>("Update successfully");
+        }
+        public async Task<List<UserVm>> GetAll()
+        {
+            var user = await _context.Users
+                 .Select(x => new UserVm()
+                 {
+                     Id = x.Id,
+                     UserName = x.UserName,
+                     FirstName = x.FirstName,
+                     LastName = x.LastName,
+                     Email = x.Email,
+                     PhoneNumber = x.PhoneNumber,
+                     Dob = x.Dob,
+                     DistrictId = x.DistrictId,
+                     ProvinceId = x.ProvinceId,
+                 }).ToListAsync();
+            return user;
         }
     }
 }

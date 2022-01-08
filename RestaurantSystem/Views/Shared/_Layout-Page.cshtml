@@ -1,8 +1,7 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Royal Recipes a Hotels and restaurants Category Flat Bootstrap responsive Website Template | Home :: w3layouts</title>
+    <title>Restaurant System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Royal Recipes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -77,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         {
                             <li class="nav">
                                 <a asp-area="" asp-controller="Account" asp-action="Login"><localize>Login</localize>|</a>
-                                <a asp-area="" asp-controller="Account" asp-action="Create"><localize>Register</localize></a>
+                                <a asp-area="" asp-controller="Account" asp-action="Register"><localize>Register</localize></a>
                             </li>
                         }
 
@@ -117,7 +116,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     }
                                     if (User.IsInRole("User"))
                                     {
-                                        <li><a asp-area="" asp-controller="Home" asp-action="Menu">Menu</a></li>
+                                        <li><a asp-area="" asp-controller="Home" asp-action="Table">Table</a></li>
+                                        <li><a asp-area="" asp-controller="BookTable" asp-action="Create">Book a Table</a></li>
+                                    }
+                                    if (User.IsInRole("Manager"))
+                                    {
+                                        <li><a asp-area="" asp-controller="Order" asp-action="Table">Checkout</a></li>
+                                        <li><a asp-area="" asp-controller="BookTable" asp-action="Index">Book a Table</a></li>
                                     }
                                 }
                                 <li><a asp-area="" asp-controller="Home" asp-action="Contact"><localize>Contact</localize></a></li>
@@ -198,9 +203,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!-- //footer -->
-    <script src="js/owl.carousel.js"></script>
-    <script type="text/javascript" src="js/move-top.js"></script>
-    <script type="text/javascript" src="js/easing.js"></script>
+    <script src="~/js/owl.carousel.js"></script>
+    <script type="text/javascript" src="~/js/move-top.js"></script>
+    <script type="text/javascript" src="~/js/easing.js"></script>
     <!-- here stars scrolling icon -->
     <script type="text/javascript">
         $(document).ready(function () {
@@ -218,13 +223,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
     <!-- //here ends scrolling icon -->
-    <script type="text/javascript">
-        /* init Jarallax */
-        $('.jarallax').jarallax({
-            speed: 0.5,
-            imgWidth: 1366,
-            imgHeight: 768
-        })
-    </script>
 </body>
 </html>

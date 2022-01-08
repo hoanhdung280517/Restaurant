@@ -17,7 +17,7 @@ namespace RSSolution.Application.Catalog.Meals
 
         Task<MealVm> GetById(int mealId, string languageId);
 
-        Task<bool> UpdatePrice(int mealId, decimal newPrice);
+        Task<bool> UpdatePrice(MealUpdatePriceRequest request);
 
         Task AddViewcount(int mealId);
 

@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using RSSolution.ViewModels.Catalog.MealCategories;
+using RestaurantSystem.Models;
+using RSSolution.ViewModels.Catalog.Table;
 
 namespace RestaurantSystem.Controllers.Components
 {
@@ -17,10 +20,15 @@ namespace RestaurantSystem.Controllers.Components
             _mealCategoryApiClient = mealCategoryApiClient;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(int tableId)
         {
             var items = await _mealCategoryApiClient.GetAll(CultureInfo.CurrentCulture.Name);
-            return View(items);
+            var request = new ViewModel()
+            {
+                tableId = tableId,
+                mealcategory = items,
+            };
+            return View(request);
         }
     }
 }

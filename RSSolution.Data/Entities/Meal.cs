@@ -14,7 +14,6 @@ namespace RSSolution.Data.Entities
         public bool? IsFeatured { get; set; }
 
         public List<MealInCategory> MealInCategories { get; set; }
-
         public List<OrderDetail> OrderDetails { get; set; }
 
         public List<Cart> Carts { get; set; }
@@ -22,5 +21,6 @@ namespace RSSolution.Data.Entities
         public List<MealTranslation> MealTranslations { get; set; }
 
         public List<MealImage> MealImages { get; set; }
+        public List<Comment> comments { get; set; }
     }
 }

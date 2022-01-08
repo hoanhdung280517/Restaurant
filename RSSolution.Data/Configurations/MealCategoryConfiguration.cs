@@ -18,7 +18,6 @@ namespace RSSolution.Data.Configurations
 
             builder.Property(x => x.Id).UseIdentityColumn();
 
-
             builder.Property(x => x.Status).HasDefaultValue(Status.Still);
         }
     }

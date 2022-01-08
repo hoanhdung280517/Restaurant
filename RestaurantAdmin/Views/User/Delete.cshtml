@@ -6,7 +6,7 @@
 
 <div id="page-wrapper">
     <div class="main-page">
-        <center><h3 class="title1">Delete Table</h3></center>
+        <center><h3 class="title1">Delete User</h3></center>
         <div class="grid-bottom widget-shadow">
             <table class="table table-bordered table-striped no-margin grd_tble">
                 <thead>
@@ -30,6 +30,7 @@
                 <form asp-action="Delete">
                     <input asp-for="Id" type="hidden" />
                     <input type="submit" value="Delete" class="btn btn-danger" />
+                    <a asp-area="" asp-controller="User" asp-action="Index" class="btn btn-primary">Back to list</a>
                 </form>
             </center>
         </div>

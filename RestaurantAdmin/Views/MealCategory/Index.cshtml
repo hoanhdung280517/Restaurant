@@ -15,8 +15,8 @@
             <a class="btn btn-success" asp-action="Create" asp-controller="MealCategory">Create New</a><hr />
             @if (ViewBag.SuccessMsg != null)
             {
-                <div id="msgAlert" class="alert alert-success" role="alert">
-                        @ViewBag.SuccessMsg
+                <div  id="msgAlert" class="alert alert-danger" role="alert" style="text-align:center;width: 380px; margin-left: auto; margin-right: auto;" >                      
+                    <h4 style="font-family:'Pacifico', cursive"> @ViewBag.SuccessMsg</h4>
                  </div>
              }
             <table class="table table-bordered table-striped no-margin grd_tble">
@@ -44,7 +44,7 @@
 
             <td>
 
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>}

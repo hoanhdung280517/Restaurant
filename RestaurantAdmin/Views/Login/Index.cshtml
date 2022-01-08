@@ -10,18 +10,25 @@
     <link href="//fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="~/login/css/style.css" type="text/css" media="all" />
+    <link href="~/Admin/css/bootstrap.css" rel='stylesheet' type='text/css' />
 </head>
 @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 @Html.AntiForgeryToken()
                 <body>
                     <div class="signinform">
-                        <h1>Login</h1>
+                        <h1>Login</h1>                       
                         <!-- container -->
                         <div class="containers">
                             <!-- main content -->
                             <div class="w3l-form-info">
                                 <div class="w3_info">
+                                    <center>
+                                        @if (TempData["result"] != null)
+                                        {
+                                            <span class="alert alert-warning">@TempData["result"]</span>
+                                        }
+                                    </center>
                                     <form id="account" method="post">
                                         <div asp-validation-summary="All" class="text-danger"></div>
                                         <div class="form-group">

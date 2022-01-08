@@ -1,0 +1,75 @@
+﻿@model IEnumerable<RSSolution.ViewModels.Catalog.Promotions.PromotionVM>
+@{
+    ViewData["Title"] = "GetAll Promotion";
+    Layout = "_Layout";
+}
+@section Scripts{
+    <script>setTimeout(function () {
+            $('#msgAlert').fadeOut('slow');
+        }, 2000);</script>
+}
+<div id="page-wrapper">
+    <div class="main-page">
+        <center><h3 class="title1">Promotion</h3></center>
+        <div class="grid-bottom widget-shadow">
+            <a class="btn btn-success" asp-action="Create" asp-controller="Promotion">Create New</a><hr />
+            @if (ViewBag.SuccessMsg != null)
+            {
+                <div  id="msgAlert" class="alert alert-danger" role="alert" style="text-align:center;width: 380px; margin-left: auto; margin-right: auto;" >                      
+                    <h4 style="font-family:'Pacifico', cursive"> @ViewBag.SuccessMsg</h4>
+                 </div>
+             }
+            <table class="table table-bordered table-striped no-margin grd_tble">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Code)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DiscountPercent)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FromDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ToDate)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiscountPercent)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FromDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ToDate)
+                        </td>
+                        <td>
+
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            <hr />
+
+        </div>
+    </div>
+</div>

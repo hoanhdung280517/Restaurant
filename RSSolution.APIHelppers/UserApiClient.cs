@@ -27,7 +27,19 @@ namespace RSSolution.APIHelpers
             _httpContextAccessor = httpContextAccessor;
             _httpClientFactory = httpClientFactory;
         }
+        public async Task<List<UserVm>> GetAll()
+        {
+            var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            var response = await client.GetAsync($"/api/users/");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<List<UserVm>>(body);
 
+            return JsonConvert.DeserializeObject<List<UserVm>>(body);
+        }
         public async Task<ApiResult<string>> Authenticate(LoginRequest request)
         {
             var json = JsonConvert.SerializeObject(request);
@@ -64,14 +76,13 @@ namespace RSSolution.APIHelpers
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
-            var response = await client.GetAsync($"/api/users/{id}");
+            var response = await client.GetAsync($"/api/users/id/{id}");
             var body = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<ApiSuccessResult<UserVm>>(body);
 
             return JsonConvert.DeserializeObject<ApiErrorResult<UserVm>>(body);
         }
-
         public async Task<ApiResult<PagedResult<UserVm>>> GetUsersPagings(GetUserPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();

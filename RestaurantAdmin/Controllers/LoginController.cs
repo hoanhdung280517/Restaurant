@@ -41,8 +41,7 @@ namespace RestaurantAdmin.Controllers
         public async Task<IActionResult> Index(LoginRequest request)
         {
             if (!ModelState.IsValid)
-                return View(ModelState);
-
+                return View(ModelState);           
             var result = await _userApiClient.Authenticate(request);
             if (result.ResultObj == null)
             {
@@ -81,6 +80,12 @@ namespace RestaurantAdmin.Controllers
             ClaimsPrincipal principal = new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out validatedToken);
 
             return principal;
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Session.Remove("Token");
+            return RedirectToAction("Index");
         }
     }
 }

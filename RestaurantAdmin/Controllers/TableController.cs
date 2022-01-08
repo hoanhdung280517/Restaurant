@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using RSSolution.APIHelpers;
 using RSSolution.ViewModels.Catalog.Table;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantAdmin.Controllers
 {
+    [Authorize]
     public class TableController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -25,6 +27,10 @@ namespace RestaurantAdmin.Controllers
         public async Task<IActionResult> Index()
         {
             var table = await _tableApiClient.GetAll();
+            if (TempData["Table"] != null)
+            {
+                ViewBag.Success = TempData["Table"];
+            }
             return View(table.ToList());
         }
         [HttpGet]
@@ -39,22 +45,18 @@ namespace RestaurantAdmin.Controllers
         {
             if (!ModelState.IsValid)
                 return View(request);
-
             var result = await _tableApiClient.Create(request);
             if (result)
             {
-                TempData["result"] = "Add new table is successful";
+                TempData["Table"] = "Create Successfully";
                 return RedirectToAction("Index");
             }
-
-            ModelState.AddModelError("", "Add new table failed");
             return View(request);
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-
             var table = await _tableApiClient.GetById(id);
             var editVm = new TableUpdateRequest()
             {
@@ -70,15 +72,14 @@ namespace RestaurantAdmin.Controllers
         {
             if (!ModelState.IsValid)
                 return View(request);
-
             var result = await _tableApiClient.Update(request);
             if (result)
             {
-                TempData["result"] = "Update table successful";
+                TempData["Table"] = "Edit Successfully";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Update table failed");
+            TempData["Table"] = "Edit fails";
             return View(request);
         }
         [HttpGet]
@@ -99,11 +100,10 @@ namespace RestaurantAdmin.Controllers
             var result = await _tableApiClient.Delete(request.Id);
             if (result)
             {
-                TempData["result"] = "Delete successful";
+                TempData["Table"] = "Delete Successfully";
                 return RedirectToAction("Index");
             }
-
-            ModelState.AddModelError("", "Delete failed");
+            TempData["Table"] = "Delete fails";
             return View(request);
         }
     }

@@ -22,5 +22,6 @@ namespace RSSolution.Data.Entities
         public  Province Province { get; set; }
         public int DistrictId { get; set; }
         public  District District { get; set; }
+        public List<BookTable> bookTables { get; set; }
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RestaurantSystem.LocalizationResources;
 using RSSolution.APIHelpers;
+using RSSolution.APIHelppers;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -63,7 +64,7 @@ namespace RestaurantSystem
                     {
                         o.SupportedCultures = cultures;
                         o.SupportedUICultures = cultures;
-                        o.DefaultRequestCulture = new RequestCulture("vi");
+                        o.DefaultRequestCulture = new RequestCulture("en");
                     };
                 });
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -83,6 +84,13 @@ namespace RestaurantSystem
             services.AddTransient<IMealCategoryApiClient, MealCategoryApiClient>();
             services.AddTransient<IUserApiClient, UserApiClient>();
             services.AddTransient<IPDApiClient, PDApiClient>();
+            services.AddTransient<IContactApiClient, ContactApiClient>();
+            services.AddTransient<ITableApiClient, TableApiClient>();
+            services.AddTransient<IOrderApiClient, OrderApiClient>();
+            services.AddTransient<IPromotionApiClient, PromotionApiClient>();
+            services.AddTransient<ICartApiClient, CartApiClient>();
+            services.AddTransient<ICommentApiClient, CommentApiClient>();
+            services.AddTransient<IBookTableApiClient, BookTableApiClient>();
             IMvcBuilder builder = services.AddRazorPages();
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
@@ -120,7 +128,7 @@ namespace RestaurantSystem
             {
                 endpoints.MapControllerRoute(
                        name: "Meal Category En",
-                       pattern: "{culture}/mealCategory/{id}", new
+                       pattern: "{culture}/mealCategory/{id}/{tableId}", new
                        {
                            controller = "Meal",
                            action = "MealCategory"
@@ -128,7 +136,7 @@ namespace RestaurantSystem
 
                 endpoints.MapControllerRoute(
                   name: "Meal Category Vn",
-                  pattern: "{culture}/danh-muc/{id}", new
+                  pattern: "{culture}/danh-muc/{id}/{tableId}", new
                   {
                       controller = "Meal",
                       action = "MealCategory"
@@ -136,7 +144,7 @@ namespace RestaurantSystem
 
                 endpoints.MapControllerRoute(
                     name: "Meal Detail En",
-                    pattern: "{culture}/meals/{id}", new
+                    pattern: "{culture}/meals/{id}/{tableId}", new
                     {
                         controller = "Meal",
                         action = "Detail"
@@ -144,14 +152,14 @@ namespace RestaurantSystem
 
                 endpoints.MapControllerRoute(
                   name: "Meal Detail Vn",
-                  pattern: "{culture}/mon-an/{id}", new
+                  pattern: "{culture}/mon-an/{id}/{tableId}", new
                   {
                       controller = "Meal",
                       action = "Detail"
                   });
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{culture=vi}/{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{culture=en}/{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

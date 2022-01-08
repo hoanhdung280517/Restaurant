@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using RSSolution.APIHelpers;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantAdmin.Controllers
 {
+    [Authorize]
     public class MealCategoryController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -24,13 +26,15 @@ namespace RestaurantAdmin.Controllers
             _configuration = configuration;
             _mealCategoryApiClient = meaCategoryApiClient;
         }
-
         [HttpGet]
         public async Task<IActionResult> Index(string languageId)
         {
             languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
-
             var mealCategories = await _mealCategoryApiClient.GetAll(languageId);
+            if (TempData["MealCategory"] != null)
+            {
+                ViewBag.SuccessMsg = TempData["MealCategory"];
+            }
             return View(mealCategories.ToList());
         }
         [HttpGet]
@@ -49,10 +53,9 @@ namespace RestaurantAdmin.Controllers
             var result = await _mealCategoryApiClient.CreateMealCategory(request);
             if (result)
             {
-                TempData["result"] = "Add new meal category is successful";
+                TempData["MealCategory"] = "Add new meal category is successful";
                 return RedirectToAction("Index");
             }
-
             ModelState.AddModelError("", "Add new meal category failed");
             return View(request);
         }
@@ -86,10 +89,9 @@ namespace RestaurantAdmin.Controllers
             var result = await _mealCategoryApiClient.UpdateMealCategory(request);
             if (result)
             {
-                TempData["result"] = "Update meal category successful";
+                TempData["MealCategory"] = "Edit meal category is successful";
                 return RedirectToAction("Index");
             }
-
             ModelState.AddModelError("", "Update meal category failed");
             return View(request);
         }
@@ -111,10 +113,9 @@ namespace RestaurantAdmin.Controllers
             var result = await _mealCategoryApiClient.DeleteMealCategory(request.Id);
             if (result)
             {
-                TempData["result"] = "Delete successful";
+                TempData["MealCategory"] = "Delete meal category is successful";
                 return RedirectToAction("Index");
             }
-
             ModelState.AddModelError("", "Delete failed");
             return View(request);
         }

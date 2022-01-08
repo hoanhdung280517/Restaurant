@@ -1,7 +1,8 @@
 ﻿@model MealDetailViewModel
 @{ ViewData["Title"] = "Detail";
     Layout = "_Layout";
-    var culture = CultureInfo.CurrentCulture; }
+    var culture = CultureInfo.CurrentCulture;
+}
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
 @inject LazZiya.ExpressLocalization.ISharedCultureLocalizer _loc;
 <head>
@@ -19,8 +20,11 @@
     <link rel="apple-touch-icon-precomposed" href="~/themes/images/ico/apple-touch-icon-57-precomposed.png">
     <style type="text/css" id="enject"></style>
 </head>
+<input type="hidden" id="hidTableId" value="@Model.TableId" />
+<input type="hidden" id="id" value="@Model.Meal.Id" />
+<input type="hidden" id="hidCulture" value="culture" />
 <ul class="breadcrumb">
-    <li><a asp-action="Menu" asp-controller="Home"><localize>Menu</localize></a> <span class="divider">/</span></li>
+    <li><a href='javascript:history.go(-1)'><localize>Menu</localize></a> <span class="divider">/</span></li>
     <li class="active">@Model.Meal.Name</li>
 </ul>
 
@@ -38,8 +42,7 @@
             <div class="control-group">
                 <label class="control-label"><span>@Model.Meal.Price</span> VND</label>
                 <div class="controls">
-                    <input type="number" class="span1" placeholder="Qty." />
-                    <button type="submit" class="btn btn-large btn-primary pull-right"> <localize>Add to</localize> <i class=" icon-shopping-cart"></i></button>
+                    <a class="btn btn-add-cart" data-id="@Model.Meal.Id" href="#"><localize>Add to</localize> <i class="icon-shopping-cart"></i></a>
                 </div>
             </div>
         </form>
@@ -56,11 +59,23 @@
     <div class="span9">
         <ul id="productDetail" class="nav nav-tabs">
             <li class="active"><a href="#home" data-toggle="tab"><localize>Meal Details</localize></a></li>
+            <li><a href="#comment" data-toggle="tab"><localize>Comment</localize></a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade active in" id="home">
                 <center><h4><localize>Meal Information</localize></h4></center>
                 @Html.Raw(Model.Meal.Details)
+            </div>
+            <div class="tab-pane" id="comment">
+                <center><h3>Comments</h3></center>
+                <form id="Createcomment">
+                    <input type="hidden" id="id" name="id" value="@Model.Meal.Id" />
+                    <input type="hidden" id="tableid" name="tableid" asp-for="@Model.TableId" value="@Model.TableId" />
+                    <textarea style="height:40px" type="text" id="comments" name="comment" placeholder="Please enter comment ... " required=""></textarea>
+                    <input type="submit" value="Comment">
+                </form>
+                <hr />
+                <ul id="list-comment" data-role="listview" style="list-style-type: none; margin-left: 0; "></ul>
             </div>
         </div>
     </div>
@@ -72,6 +87,7 @@
 <script src="~/themes/js/bootshop.js"></script>
 <script src="~/themes/js/jquery.lightbox-0.5.js"></script>
 <script src="~/js/site.js"></script>
+<script src="~/js/comment.js"></script>
 <script>
     var site = new SiteController();
     site.initialize();

@@ -37,6 +37,8 @@ namespace RSSolution.Data.EF
             modelBuilder.ApplyConfiguration(new SlideConfiguration());
             modelBuilder.ApplyConfiguration(new TableConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
+            modelBuilder.ApplyConfiguration(new BookTableConfiguration());
+            modelBuilder.ApplyConfiguration(new CommentConfiguration());
 
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
             modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x => new { x.UserId, x.RoleId });
@@ -45,12 +47,13 @@ namespace RSSolution.Data.EF
             modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims");
             modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
 
-            modelBuilder.Seed();
+           modelBuilder.Seed();
 
             // base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Meal> Meals { get; set; }
+
         public DbSet<MealCategory> MealCategories { get; set; }
 
         public DbSet<AppConfig> AppConfigs { get; set; }
@@ -58,6 +61,7 @@ namespace RSSolution.Data.EF
         public DbSet<Cart> Carts { get; set; }
 
         public DbSet<MealCategoryTranslation> MealCategoryTranslations { get; set; }
+
         public DbSet<MealInCategory> MealInCategories { get; set; }
 
         public DbSet<Contact> Contacts { get; set; }
@@ -67,17 +71,25 @@ namespace RSSolution.Data.EF
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderDetail> OrderDetails { get; set; }
+
         public DbSet<MealTranslation> MealTranslations { get; set; }
 
-        public DbSet<Promotion> Promotions { get; set; }
+        public DbSet<Promotions> Promotions { get; set; }
 
         public DbSet<Transaction> Transactions { get; set; }
 
         public DbSet<MealImage> MealImages { get; set; }
 
         public DbSet<Slide> Slides { get; set; }
+
         public DbSet<District> Districts { get; set; }
+
         public DbSet<Province> Provinces { get; set; }
+
         public DbSet<Table> Tables { get; set; }
+
+        public DbSet<BookTable> BookTables { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
     }
 }

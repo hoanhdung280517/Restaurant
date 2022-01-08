@@ -1,4 +1,5 @@
 ﻿using RSSolution.ViewModels.Catalog.Meals;
+using RSSolution.ViewModels.Catalog.Table;
 using RSSolution.ViewModels.Utilities.Slides;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace RestaurantSystem.Models
 {
     public class HomeViewModel
     {
+        public int TableId { get; set; }
         public List<SlideVm> Slides { get; set; }
 
         public List<MealVm> FeaturedMeals { get; set; }

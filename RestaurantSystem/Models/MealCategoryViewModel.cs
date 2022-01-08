@@ -10,6 +10,7 @@ namespace RestaurantSystem.Models
 {
     public class MealCategoryViewModel
     {
+        public int TableId { get; set; }
         public MealCategoryVm MealCategory { get; set; }
 
         public PagedResult<MealVm> Meals { get; set; }

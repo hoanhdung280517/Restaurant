@@ -1,0 +1,43 @@
+﻿@model IEnumerable<RSSolution.ViewModels.Catalog.Table.TableVm>
+@{ ViewData["Title"] = "GetAll Table";
+    Layout = "_Layout-Page"; }
+
+<div id="page-wrapper">
+    <div class="main-page">
+        <center><h3 class="title1">Table</h3></center>
+        <div class="grid-bottom widget-shadow">
+            <table class="table table-bordered table-striped no-margin grd_tble">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+
+                            <td>
+                                <a class="btn-add-tableid" data-id="@item.Id">@Html.ActionLink("Menu", "Menu", new { tableId = item.Id })</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <hr />
+
+        </div>
+    </div>
+</div>
